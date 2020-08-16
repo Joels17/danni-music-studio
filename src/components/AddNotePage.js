@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NoteForm from './NoteForm';
-import { addNote } from '../actions/notes';
+import { startAddNote } from '../actions/notes';
 
 export class AddNotePage extends React.Component {
     onSubmit = (note) => {
-        this.props.addNote(note);
+        this.props.startAddNote(note);
         this.props.history.push('/admin');
       };
 
@@ -18,7 +18,7 @@ export class AddNotePage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addNote: (note) => dispatch(addNote(note)),
+      startAddNote: (note) => dispatch(startAddNote(note)),
     };
   };
   
