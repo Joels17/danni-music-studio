@@ -1,0 +1,33 @@
+.homePage_header {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: darkblue;
+}
+
+.nature_svg {
+    padding: $s-size;
+}
+.homePage__title {
+    padding: $s-size $s-size 0 $s-size;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.homePage__subtitle {
+    padding: 0 0 $m-size 0;
+    color: white;
+}
+.homePage__textBody {
+    margin: $s-size $l-size $s-size $l-size;
+    background-color: $third;
+}
+.homePage__text {
+    padding: 0 $l-size $l-size $l-size;
+}
+.homePage__textTitle {
+    padding: $l-size 0 $s-size 0;
+    text-align: center;
+    color: $primary;
+}

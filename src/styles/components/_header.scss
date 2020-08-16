@@ -1,0 +1,21 @@
+.header {
+	display: flex;
+	justify-content: flex-start;
+	background-color: darkblue;
+}
+
+.header__link {
+	text-decoration: none;
+	padding: 0 $s-size 0 $s-size;
+	color: $secondary;
+}
+
+.header__link:hover {
+	padding: 0 $s-size 0 $s-size;
+	color: $third;
+}
+
+.header__is-active {
+	color: $primary;
+}
+
