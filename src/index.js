@@ -7,22 +7,40 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 import { startSetNotes } from './actions/notes';
-
+import { history } from './routers/AppRouter';
 
 const store = configureStore();
 
 const jsx = (
-  <Provider store={store}>
-    <App />
-  </Provider>
+	<Provider store={store}>
+		<App />
+	</Provider>
 );
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 
-store.dispatch(startSetNotes()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('root'));
+let hasRendered = false;
+const renderApp = () => {
+	if (!hasRendered) {
+		ReactDOM.render(jsx, document.getElementById('root'));
+		hasRendered = true;
+	}
+};
+
+firebase.auth().onAuthStateChanged((user) => {
+	if (user) {
+		store.dispatch(startSetNotes()).then(() => {
+			renderApp();
+			if (history.location.pathname === '/') {
+				history.push('/home');
+			}
+		});
+	} else {
+		renderApp();
+		history.push('/');
+	}
 });
 
 // If you want your app to work offline and load faster, you can change
