@@ -8,11 +8,14 @@ const NoteListItem = ({ id, noteTitle, noteBody, createdAt }) => (
     <Link to={`/edit/${id}`}>
       <h3>{noteTitle}</h3>
     </Link>
-    <p>
+    <div>
+
         {ReactHtmlParser(noteBody)} ---  
        {moment(createdAt).format('MMMM Do, YYYY')}
-    </p>
+    </div>
   </div>
 );
+
+
 
 export default NoteListItem;

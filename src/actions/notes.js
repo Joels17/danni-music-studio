@@ -6,11 +6,12 @@ export const addNote = (note) => ({
 });
 
 export const startAddNote = (noteData = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
 		const { noteTitle = '', noteBody = '', createdAt = 0 } = noteData;
 		const note = { noteTitle, noteBody, createdAt };
 		return database
-			.ref('notes')
+			.ref(`users/${uid}/notes`)
 			.push(note)
 			.then((ref) => {
 				dispatch(
@@ -29,9 +30,10 @@ export const removeNote = (id) => ({
 });
 
 export const startRemoveNote = ({ id } = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
 		return database
-			.ref(`notes/${id}`)
+			.ref(`users/${uid}/notes/${id}`)
 			.remove()
 			.then(() => {
 				dispatch(removeNote(id));
@@ -46,9 +48,10 @@ export const editNote = (id, updates) => ({
 });
 
 export const startEditNote = (id, updates) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
 		return database
-			.ref(`notes/${id}`)
+			.ref(`users/${uid}/notes/${id}`)
 			.update(updates)
 			.then(() => {
 				dispatch(editNote(id, updates));
@@ -58,23 +61,26 @@ export const startEditNote = (id, updates) => {
 
 export const setNotes = (notes) => ({
 	type: 'SET_NOTES',
-	notes
-  });
-  
-  export const startSetNotes = () => {
-	return (dispatch) => {
-	  return database.ref('notes').once('value').then((snapshot) => {
-		const notes = [];
-  
-		snapshot.forEach((childSnapshot) => {
-		  notes.push({
-			id: childSnapshot.key,
-			...childSnapshot.val()
-		  });
-		});
-  
-		dispatch(setNotes(notes));
-	  });
+	notes,
+});
+
+export const startSetNotes = () => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
+		return database
+			.ref(`users/${uid}/notes`)
+			.once('value')
+			.then((snapshot) => {
+				const notes = [];
+
+				snapshot.forEach((childSnapshot) => {
+					notes.push({
+						id: childSnapshot.key,
+						...childSnapshot.val(),
+					});
+				});
+
+				dispatch(setNotes(notes));
+			});
 	};
-  };
-  
+};

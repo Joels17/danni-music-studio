@@ -42,7 +42,7 @@ export default class NoteForm extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div suppressContentEditableWarning={true}>
 				{this.state.error && <h4>{this.state.error}</h4>}
 				<form onSubmit={this.onSubmit}>
 					<input

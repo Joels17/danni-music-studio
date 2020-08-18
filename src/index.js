@@ -10,12 +10,16 @@ import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
 import { startSetNotes } from './actions/notes';
 import { history } from './routers/AppRouter';
+import { login, logout } from './actions/auth';
+
 
 const store = configureStore();
 
 const jsx = (
 	<Provider store={store}>
-		<App />
+		<div>
+			<App />
+		</div>
 	</Provider>
 );
 
@@ -31,6 +35,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
+		store.dispatch(login(user.uid));
 		store.dispatch(startSetNotes()).then(() => {
 			renderApp();
 			if (history.location.pathname === '/') {
@@ -38,6 +43,7 @@ firebase.auth().onAuthStateChanged((user) => {
 			}
 		});
 	} else {
+		store.dispatch(logout());
 		renderApp();
 		history.push('/');
 	}
