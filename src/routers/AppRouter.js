@@ -8,22 +8,27 @@ import AdminPage from '../components/AdminPage';
 import AddNotePage from '../components/AddNotePage';
 import EditNotePage from '../components/EditNotePage';
 import LoginPage from '../components/LoginPage';
+import EmailLoginPage from '../components/EmailLoginPage';
+import EmailSignUpPage from '../components/EmailSignUpPage';
 import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 import PublicRoute from './PublicRoute';
 
 export const history = createHistory();
 
 const AppRouter = () => (
 	<Router history={history}>
-    <div>
+		<div>
 			<Switch>
-				<Route path="/" component={LoginPage} exact={true} />
+				<PublicRoute path="/" component={LoginPage} exact={true} />
+				<PublicRoute path="/emailLogin" component={EmailLoginPage} />
+				<PublicRoute path="/emailSignUp" component={EmailSignUpPage} />
 				<PrivateRoute path="/home" component={HomePage} />
 				<PrivateRoute path="/about" component={AboutPage} />
-				<PrivateRoute path="/admin" component={AdminPage} />
+				<AdminRoute path="/admin" component={AdminPage} />
 				<PrivateRoute path="/addNote" component={AddNotePage} />
 				<PrivateRoute path="/edit/:id" component={EditNotePage} />
-				<Route component={NotFoundPage} />
+				<PublicRoute component={NotFoundPage} />
 			</Switch>
 		</div>
 	</Router>

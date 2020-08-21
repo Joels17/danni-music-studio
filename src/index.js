@@ -10,8 +10,7 @@ import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
 import { startSetNotes } from './actions/notes';
 import { history } from './routers/AppRouter';
-import { login, logout } from './actions/auth';
-
+import { login, logout, startSetAdmin } from './actions/auth';
 
 const store = configureStore();
 
@@ -35,6 +34,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
+		store.dispatch(startSetAdmin(user));
 		store.dispatch(login(user.uid));
 		store.dispatch(startSetNotes()).then(() => {
 			renderApp();

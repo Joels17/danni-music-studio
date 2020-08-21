@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
-export const Header = ({ startLogout }) => (
+export const Header = ({ startLogout, isAdmin }) => (
 	<header className="header">
 		<NavLink
 			to="/home"
@@ -20,13 +20,20 @@ export const Header = ({ startLogout }) => (
 		>
 			<h4>About</h4>
 		</NavLink>
-		<NavLink
+		
+		{isAdmin ? (
+			<NavLink
 			to="/admin"
 			activeClassName="header__is-active"
 			className="header__link"
 		>
 			<h4>Admin</h4>
 		</NavLink>
+		) : (
+			''
+		)
+		}
+		
 		<button onClick={startLogout}>Logout</button>
 	</header>
 );
@@ -35,4 +42,8 @@ const mapDispatchToProps = (dispatch) => ({
 	startLogout: () => dispatch(startLogout()),
 });
 
-export default connect(undefined, mapDispatchToProps)(Header);
+const mapStateToProps = (state) => ({
+	isAdmin: !!state.auth.isAdmin
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
