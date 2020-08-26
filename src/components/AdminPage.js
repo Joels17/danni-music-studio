@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import NotesListFilter from './NotesListFilters';
 import NotesList from './NotesList';
@@ -36,9 +35,9 @@ export default class AdminPage extends React.Component {
 		return (
 			<div>
 				<Link to="/addNote" className="button_text">
-					<Button variant="contained" color="secondary">
+					<button className="button">
 						Add Note
-					</Button>
+					</button>
 				</Link>
 				{this.state.error ? <h3>{this.state.error}</h3>:''}
 				<form onSubmit={this.onSubmit}>
@@ -48,7 +47,7 @@ export default class AdminPage extends React.Component {
 						onChange={this.onAddAdminChange}
 					/>
 
-					<button>Add admin</button>
+					<button className="button">Add admin</button>
 				</form>
 				<NotesListFilter />
 				<NotesList />

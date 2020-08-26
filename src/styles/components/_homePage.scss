@@ -1,33 +1,65 @@
 .homePage_header {
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    background-color: darkblue;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	background: rgb(2, 0, 36);
+	background: linear-gradient(
+		90deg,
+		rgba(2, 0, 36, 1) 0%,
+		rgba(9, 9, 121, 1) 35%,
+		rgba(0, 212, 255, 1) 100%
+	);
 }
 
 .nature_svg {
-    padding: $s-size;
+	padding: $s-size;
 }
 .homePage__title {
-    padding: $s-size $s-size 0 $s-size;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+	padding: $s-size $s-size 0 $s-size;
+	color: white;
+	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .homePage__subtitle {
-    padding: 0 0 $m-size 0;
-    color: white;
+	padding: 0 0 $m-size 0;
+	color: white;
 }
+
+.card {
+	display: flex;
+	justify-content: space-evenly;
+	margin: $xl-size;
+}
+
+.homePage__leftTextBody {
+    color: white;
+	background-color: navy;
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+	width: 25%;
+    padding: $m-size;
+}
+
+.homePage__leftTextBody h2 {
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    padding: 50% 0 50% 0;
+}
+
 .homePage__textBody {
-    margin: $s-size $l-size $s-size $l-size;
-    background-color: $third;
+    border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+	width: 75%;
+	background-color: white;
 }
 .homePage__text {
-    padding: 0 $l-size $l-size $l-size;
+	padding: 0 $l-size $l-size $l-size;
 }
 .homePage__textTitle {
-    padding: $l-size 0 $s-size 0;
-    text-align: center;
-    color: $primary;
+	padding: $l-size 0 $s-size 0;
+	text-align: center;
+	color: $primary;
 }

@@ -4,7 +4,7 @@ import NoteListItem from './NoteListItem';
 import selectNotes from '../selectors/notes';
 
 export const NotesList = (props) => (
-  <div>
+  <div suppressContentEditableWarning={true}>
     {props.notes.length === 0 ? (
       <p>No notes</p>
     ) : (

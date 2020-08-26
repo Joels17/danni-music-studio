@@ -11,6 +11,7 @@ import { firebase } from './firebase/firebase';
 import { startSetNotes } from './actions/notes';
 import { history } from './routers/AppRouter';
 import { login, logout, startSetAdmin } from './actions/auth';
+import { startSetStudents } from './actions/students';
 
 const store = configureStore();
 
@@ -36,12 +37,10 @@ firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
 		store.dispatch(startSetAdmin(user));
 		store.dispatch(login(user.uid));
-		store.dispatch(startSetNotes()).then(() => {
-			renderApp();
-			if (history.location.pathname === '/') {
-				history.push('/home');
-			}
-		});
+		renderApp();
+		if (history.location.pathname === '/') {
+			history.push('/loading');
+		}
 	} else {
 		store.dispatch(logout());
 		renderApp();
