@@ -34,11 +34,6 @@ export default class AdminPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<Link to="/addNote" className="button_text">
-					<button className="button">
-						Add Note
-					</button>
-				</Link>
 				{this.state.error ? <h3>{this.state.error}</h3>:''}
 				<form onSubmit={this.onSubmit}>
 					<input
@@ -49,8 +44,6 @@ export default class AdminPage extends React.Component {
 
 					<button className="button">Add admin</button>
 				</form>
-				<NotesListFilter />
-				<NotesList />
 			</div>
 		);
 	}

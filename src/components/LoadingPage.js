@@ -9,6 +9,7 @@ export class LoadingPage extends React.Component {
             history.push('/home');
         })
     }
+    
     render() {
         return (
             <div>

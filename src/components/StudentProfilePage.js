@@ -28,15 +28,22 @@ export class StudentProfilePage extends React.Component {
 
 	componentWillUnmount = () => {
 		this._isMounted = false;
-	}
+	};
 
 	render() {
 		return (
 			<div>
 				{this.props.student.firstName} {this.props.student.lastName}
-				<Link to={`/addNote/${this.props.student.id}`} className="button_text">
-					<button className="button">Add Note</button>
-				</Link>
+				{this.props.isAdmin ? (
+					<Link
+						to={`/addNote/${this.props.student.id}`}
+						className="button_text"
+					>
+						<button className="button">Add Note</button>
+					</Link>
+				) : (
+					''
+				)}
 				<NotesListFilter />
 				{this.state.hasFetched ? (
 					<NotesList />
@@ -55,6 +62,7 @@ const mapStateToProps = (state, props) => {
 		student: state.students.find(
 			(student) => student.id === props.match.params.id
 		),
+		isAdmin: !!state.auth.isAdmin,
 	};
 };
 

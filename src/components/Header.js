@@ -30,11 +30,11 @@ export class Header extends React.Component {
 					<h4>About</h4>
 				</NavLink>
 				<NavLink
-					to="/students"
+					to={this.props.isAdmin ? ("/studentsAdmin") : ('/students')}
 					activeClassName="header__is-active"
 					className="header__link"
 				>
-					<h4>Student</h4>
+					<h4>Student Accounts</h4>
 				</NavLink>
 
 				{this.props.isAdmin ? (

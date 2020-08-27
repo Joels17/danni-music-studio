@@ -6,13 +6,14 @@ import Header from '../components/Header';
 export const AdminRoute = ({
 	isAdmin,
 	component: Component,
+	isDataAvailable,
 	...rest
 }) => (
 	<div>
 		<Route
 			{...rest}
 			component={(props) =>
-				isAdmin ? (
+				isAdmin && isDataAvailable? (
 					<div>
 						<Header />
 						<Component {...props} />
@@ -26,6 +27,7 @@ export const AdminRoute = ({
 );
 
 const mapStateToProps = (state) => ({
+	isDataAvailable: state.students.length !== 0,
 	isAdmin: !!state.auth.isAdmin,
 });
 

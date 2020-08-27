@@ -36,10 +36,6 @@ export default class HomePage extends React.Component {
 						</div>
 					</div>
 				</div>
-
-				<div>
-					<p>Fetching data...</p>
-				</div>
 			</div>
 		);
 	}

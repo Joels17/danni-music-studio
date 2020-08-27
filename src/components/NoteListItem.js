@@ -8,9 +8,14 @@ export class NoteListItem extends React.Component {
 	render() {
 		return (
 			<div>
+				{this.props.isAdmin? (
 				<Link to={`/edit/${this.props.id}`}>
 					<h3>{this.props.noteTitle}</h3>
 				</Link>
+				) : (
+					<h3>{this.props.noteTitle}</h3>
+				)}
+				
 				<div suppressContentEditableWarning={true}>
 					{ReactHtmlParser(this.props.noteBody)} ---
 					{moment(this.props.createdAt).format('MMMM Do, YYYY')}
@@ -20,4 +25,10 @@ export class NoteListItem extends React.Component {
 	}
 }
 
-export default (NoteListItem);
+const mapStateToProps = (state) => {
+	return {
+		isAdmin: !!state.auth.isAdmin
+	}
+}
+
+export default connect(mapStateToProps)(NoteListItem);

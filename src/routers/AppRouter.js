@@ -18,6 +18,7 @@ import StudentProfilePage from '../components/StudentProfilePage';
 import LoadingPage from '../components/LoadingPage';
 import LoadingRoute from './LoadingRoute';
 import RefreshRoute from './RefreshRoute';
+import AdminStudents from '../components/AdminStudents';
 
 export const history = createHistory();
 
@@ -28,13 +29,14 @@ const AppRouter = () => (
 				<PublicRoute path="/" component={LoginPage} exact={true} />
 				<PublicRoute path="/emailLogin" component={EmailLoginPage} />
 				<PublicRoute path="/emailSignUp" component={EmailSignUpPage} />
-				<PrivateRoute path="/home" component={HomePage} />
+				<RefreshRoute path="/home" component={HomePage} />
 				<LoadingRoute path="/loading" component={LoadingPage} />
-				<PrivateRoute path="/students" component={StudentPage} />
-				<PrivateRoute path="/about" component={AboutPage} />
+				<RefreshRoute path="/students" component={StudentPage} />
+				<AdminRoute path="/studentsAdmin" component={AdminStudents} />
+				<RefreshRoute path="/about" component={AboutPage} />
 				<AdminRoute path="/admin" component={AdminPage} />
-				<PrivateRoute path="/addNote/:id" component={AddNotePage} />
-				<PrivateRoute path="/edit/:id" component={EditNotePage} />
+				<AdminRoute path="/addNote/:id" component={AddNotePage} />
+				<AdminRoute path="/edit/:id" component={EditNotePage} />
 				<RefreshRoute path="/student/:id" component={StudentProfilePage} />
 				<PublicRoute component={NotFoundPage} />
 			</Switch>
