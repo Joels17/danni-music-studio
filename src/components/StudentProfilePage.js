@@ -5,7 +5,6 @@ import NotesListFilter from './NotesListFilters';
 import NotesList from './NotesList';
 import { currentStudent } from '../actions/currentStudent';
 import { startSetNotes } from '../actions/notes';
-import { history } from '../routers/AppRouter';
 
 export class StudentProfilePage extends React.Component {
 	_isMounted = false;
@@ -18,9 +17,12 @@ export class StudentProfilePage extends React.Component {
 
 	componentDidMount = () => {
 		this._isMounted = true;
+
 		this.props.currentStudent(this.props.student);
+
 		this.props.startSetNotes().then(() => {
 			if (this._isMounted) {
+				console.log(this.props.currentStudentState);
 				this.setState({ hasFetched: true });
 			}
 		});
@@ -33,10 +35,11 @@ export class StudentProfilePage extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.props.student.firstName} {this.props.student.lastName}
+				{this.props.currentStudentState.firstName}{' '}
+				{this.props.currentStudentState.lastName}
 				{this.props.isAdmin ? (
 					<Link
-						to={`/addNote/${this.props.student.id}`}
+						to={`/addNote/${this.props.currentStudentState.id}`}
 						className="button_text"
 					>
 						<button className="button">Add Note</button>
@@ -62,6 +65,7 @@ const mapStateToProps = (state, props) => {
 		student: state.students.find(
 			(student) => student.id === props.match.params.id
 		),
+		currentStudentState: state.currentStudent,
 		isAdmin: !!state.auth.isAdmin,
 	};
 };

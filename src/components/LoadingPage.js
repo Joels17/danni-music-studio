@@ -5,6 +5,9 @@ import { history } from '../routers/AppRouter';
 
 export class LoadingPage extends React.Component {
     componentDidMount = () => {
+        if(this.props.students.length === 0){
+            history.push('/home');
+        }
         this.props.startSetStudents().then(() => {
             history.push('/home');
         })
@@ -17,12 +20,17 @@ export class LoadingPage extends React.Component {
             </div>
         )
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         startSetStudents: () => dispatch(startSetStudents())
     }
-}
+};
+const mapStateToProps = (state) => {
+    return {
+        students: state.students
+    }
+};
 
-export default connect(undefined, mapDispatchToProps)(LoadingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoadingPage);

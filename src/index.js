@@ -10,8 +10,9 @@ import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
 import { startSetNotes } from './actions/notes';
 import { history } from './routers/AppRouter';
-import { login, logout, startSetAdmin } from './actions/auth';
+import { login, logout, startSetAdmin, startDefaultLogin } from './actions/auth';
 import { startSetStudents } from './actions/students';
+import { startSetUserInfo } from './actions/userInfo';
 
 const store = configureStore();
 
@@ -36,7 +37,8 @@ const renderApp = () => {
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
 		store.dispatch(startSetAdmin(user));
-		store.dispatch(login(user.uid));
+		store.dispatch(login(user.uid, user.displayName));
+		store.dispatch(startSetUserInfo(user.email))
 		renderApp();
 		if (history.location.pathname === '/') {
 			history.push('/loading');

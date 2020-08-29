@@ -5,6 +5,8 @@ export default (state = studentsDefaultState, action) => {
 			return [...state, action.student];
 		case 'SET_STUDENTS':
 			return action.students;
+		case 'SET_STUDENTS_ADMIN':
+			return [...state, action.students]
 		case 'REMOVE_ALL_STUDENTS':
 			return studentsDefaultState;
 		default:

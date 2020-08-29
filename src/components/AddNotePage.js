@@ -6,16 +6,14 @@ import { currentStudent } from '../actions/currentStudent'
 
 export class AddNotePage extends React.Component {
 	onSubmit = (note) => {
-		this.props.startAddNote(note, this.props.student);
-		this.props.history.push(`/student/${this.props.student.id}`);
+		this.props.startAddNote(note);
+		this.props.history.push(`/student/${this.props.currentStudentState.id}`);
 	};
-	componentWillMount() {
-		this.props.currentStudent('');
-	}
+	
 	render() {
 		return (
 			<div>
-				{this.props.student.firstName}
+				{this.props.currentStudentState.firstName}
 				<NoteForm onSubmit={this.onSubmit} />
 			</div>
 		);
@@ -31,9 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, props) => {
 	return {
-		student: state.students.find(
-			(student) => student.id === props.match.params.id
-		),
+		currentStudentState: state.currentStudent,
 	};
 };
 

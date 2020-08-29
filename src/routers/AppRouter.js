@@ -19,6 +19,8 @@ import LoadingPage from '../components/LoadingPage';
 import LoadingRoute from './LoadingRoute';
 import RefreshRoute from './RefreshRoute';
 import AdminStudents from '../components/AdminStudents';
+import AddStudentPage from '../components/AddStudentPage';
+import UsersPage from '../components/UsersPage';
 
 export const history = createHistory();
 
@@ -29,15 +31,17 @@ const AppRouter = () => (
 				<PublicRoute path="/" component={LoginPage} exact={true} />
 				<PublicRoute path="/emailLogin" component={EmailLoginPage} />
 				<PublicRoute path="/emailSignUp" component={EmailSignUpPage} />
-				<RefreshRoute path="/home" component={HomePage} />
+				<PrivateRoute path="/home" component={HomePage} />
 				<LoadingRoute path="/loading" component={LoadingPage} />
-				<RefreshRoute path="/students" component={StudentPage} />
-				<AdminRoute path="/studentsAdmin" component={AdminStudents} />
-				<RefreshRoute path="/about" component={AboutPage} />
+				<PrivateRoute path="/students" component={StudentPage} />
+				<PrivateRoute path="/addStudent" component={AddStudentPage} />
+				<AdminRoute path="/studentsAdmin/:id" component={AdminStudents} />
+				<AdminRoute path="/usersAdmin" component={UsersPage} />
+				<PrivateRoute path="/about" component={AboutPage} />
 				<AdminRoute path="/admin" component={AdminPage} />
 				<AdminRoute path="/addNote/:id" component={AddNotePage} />
 				<AdminRoute path="/edit/:id" component={EditNotePage} />
-				<RefreshRoute path="/student/:id" component={StudentProfilePage} />
+				<PrivateRoute path="/student/:id" component={StudentProfilePage} />
 				<PublicRoute component={NotFoundPage} />
 			</Switch>
 		</div>

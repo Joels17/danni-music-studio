@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { startAddStudent, startSetStudents } from '../actions/students';
-import { currentStudent } from '../actions/currentStudent';
+import { startAddStudent } from '../actions/students';
 import { history } from '../routers/AppRouter';
 
-export class StudentPage extends React.Component {
+export class AddStudentPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -27,7 +25,7 @@ export class StudentPage extends React.Component {
 	};
 
 	onAddStudentClick = () => {
-		history.push('/addStudent');
+		this.setState({ addStudentRequest: true });
 	};
 
 	onSubmit = (e) => {
@@ -43,51 +41,46 @@ export class StudentPage extends React.Component {
 			}));
 		} else {
 			this.setState(() => ({ error: '' }));
+			this.setState(() => ({ addStudentRequest: false }));
 			this.props.startAddStudent({
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				birthDate: this.state.birthDate,
 			});
+			history.push('/students');
 		}
-	};
-
-	getData = () => {
-		let data = [];
-		this.props.students.map((student) => {
-			data.push(
-				<div key={student.id}>
-					<Link onClick={this.onClick} to={`/student/${student.id}`}>
-						{student.firstName}
-					</Link><br />
-				</div>
-			);
-		});
-		return data;
 	};
 	render() {
 		return (
 			<div>
-				{this.getData()}
-				<button className="button" onClick={this.onAddStudentClick}>
-					Add another student
-				</button>
+				<h2>Input values for student</h2>
+				<form onSubmit={this.onSubmit}>
+					<input
+						type="text"
+						placeholder="First Name"
+						onChange={this.firstNameOnChange}
+					/>
+					<input
+						type="text"
+						placeholder="Last Name"
+						onChange={this.lastNameOnChange}
+					/>
+					<input
+						type="text"
+						placeholder="Birthdate"
+						onChange={this.birthDateOnChange}
+					/>
+					<button>Add Student</button>
+				</form>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state, props) => {
-	return {
-		students: state.students,
-	};
-};
-
 const mapDispatchToProps = (dispatch) => {
 	return {
 		startAddStudent: (student) => dispatch(startAddStudent(student)),
-		currentStudent: (student) => dispatch(currentStudent(student)),
-		startSetStudents: () => dispatch(startSetStudents()),
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentPage);
+export default connect(undefined, mapDispatchToProps)(AddStudentPage);

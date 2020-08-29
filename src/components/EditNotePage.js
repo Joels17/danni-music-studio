@@ -13,9 +13,7 @@ export class EditNotePage extends React.Component {
     this.props.startRemoveNote(this.props.note);
     this.props.history.push(`/student/${this.props.student.id}`);
   };
-  componentWillUnmount() {
-		this.props.currentStudent('');
-	}
+
   render() {
     return (
       <div>

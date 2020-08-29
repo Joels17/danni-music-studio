@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 import { currentStudent } from '../actions/currentStudent';
-import { removeAllStudents } from '../actions/students';
+import { removeAllStudents, startSetStudents } from '../actions/students';
 
 export class Header extends React.Component {
 	onLogoutClick = () => {
@@ -11,6 +11,18 @@ export class Header extends React.Component {
 		this.props.currentStudent('');
 		this.props.startLogout();
 	};
+	componentDidMount = () => {
+		this.props.startSetStudents();
+	}
+	studentAccountLink = () => {
+		if(this.props.isAdmin){
+			return "/usersAdmin"
+		}else if(this.props.isDataAvailable){
+			return "/students"
+		}else{
+			return "/addStudent"
+		}
+	}
 	render() {
 		return (
 			<header className="header">
@@ -30,7 +42,7 @@ export class Header extends React.Component {
 					<h4>About</h4>
 				</NavLink>
 				<NavLink
-					to={this.props.isAdmin ? ("/studentsAdmin") : ('/students')}
+					to={this.studentAccountLink()}
 					activeClassName="header__is-active"
 					className="header__link"
 				>
@@ -61,10 +73,12 @@ const mapDispatchToProps = (dispatch) => ({
 	startLogout: () => dispatch(startLogout()),
 	currentStudent: (student) => dispatch(currentStudent(student)),
 	removeAllStudents: () => dispatch(removeAllStudents()),
+	startSetStudents: () => dispatch(startSetStudents())
 });
 
 const mapStateToProps = (state) => ({
 	isAdmin: !!state.auth.isAdmin,
+	isDataAvailable: state.students.length !== 0,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
