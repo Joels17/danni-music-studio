@@ -5,6 +5,8 @@ import NotesListFilter from './NotesListFilters';
 import NotesList from './NotesList';
 import { currentStudent } from '../actions/currentStudent';
 import { startSetNotes } from '../actions/notes';
+import { startRemoveStudent } from '../actions/students';
+import { history } from '../routers/AppRouter';
 
 export class StudentProfilePage extends React.Component {
 	_isMounted = false;
@@ -22,8 +24,11 @@ export class StudentProfilePage extends React.Component {
 
 		this.props.startSetNotes().then(() => {
 			if (this._isMounted) {
-				console.log(this.props.currentStudentState);
 				this.setState({ hasFetched: true });
+				if (!this.props.currentStudentState) {
+					history.push('/home');
+				}
+				
 			}
 		});
 	};
@@ -32,18 +37,28 @@ export class StudentProfilePage extends React.Component {
 		this._isMounted = false;
 	};
 
+	onRemoveStudent = () => {
+		this.props.startRemoveStudent();
+		history.push('/home');
+	};
+
 	render() {
 		return (
 			<div>
 				{this.props.currentStudentState.firstName}{' '}
 				{this.props.currentStudentState.lastName}
+				<button className="button" onClick={this.onRemoveStudent}>
+					Remove student
+				</button>
 				{this.props.isAdmin ? (
-					<Link
-						to={`/addNote/${this.props.currentStudentState.id}`}
-						className="button_text"
-					>
-						<button className="button">Add Note</button>
-					</Link>
+					<div>
+						<Link
+							to={`/addNote/${this.props.currentStudentState.id}`}
+							className="button_text"
+						>
+							<button className="button">Add Note</button>
+						</Link>
+					</div>
 				) : (
 					''
 				)}
@@ -74,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		currentStudent: (student) => dispatch(currentStudent(student)),
 		startSetNotes: () => dispatch(startSetNotes()),
+		startRemoveStudent: () => dispatch(startRemoveStudent()),
 	};
 };
 

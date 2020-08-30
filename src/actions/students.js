@@ -55,6 +55,24 @@ export const startSetStudents = () => {
 	};
 };
 
+export const removeStudent = (sid) => ({
+	type: 'REMOVE_STUDENT',
+	sid,
+});
+
+export const startRemoveStudent = () => {
+	return (dispatch, getState) => {
+		const uid = getState().auth.uid;
+		const sid = getState().currentStudent.id;
+		return database
+			.ref(`users/${uid}/students/${sid}`)
+			.remove()
+			.then(() => {
+				dispatch(removeStudent(sid));
+			});
+	};
+};
+
 export const setStudentsAdmin = (students) => ({
 	type: 'SET_STUDENTS_ADMIN',
 	students,

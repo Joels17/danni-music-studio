@@ -12,9 +12,6 @@ export default class HomePage extends React.Component {
 						</h5>
 					</div>
 					<div className="card">
-						<div className="homePage__leftTextBody">
-							<h2>More about Danni</h2>
-						</div>
 						<div className="homePage__textBody">
 							<h2 className="homePage__textTitle">About Danni</h2>
 							<p className="homePage__text">

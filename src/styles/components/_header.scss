@@ -1,6 +1,7 @@
 .header {
+	max-width: 100%;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-evenly;
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
 		90deg,
@@ -12,15 +13,23 @@
 
 .header__link {
 	text-decoration: none;
-	padding: 0 $s-size 0 $s-size;
+	padding: 2rem;
 	color: $secondary;
 }
 
 .header__link:hover {
-	padding: 0 $s-size 0 $s-size;
+	
 	color: $third;
 }
 
 .header__is-active {
 	color: $primary;
 }
+
+
+
+@media (min-width: $desktop-breakpoint){
+	.header{
+	  max-width: 100%;
+	}
+  }

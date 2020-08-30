@@ -1,10 +1,27 @@
+@font-face {
+	font-family: 'Futura PT light';
+	src: url("../fonts/futura light bt.ttf");
+}
+@font-face {
+	font-family: 'Futura PT medium';
+	src: url("../fonts/futura medium bt.ttf");
+}
+@font-face {
+	font-family: 'Futura PT bold';
+	src: url("../fonts/Futura Bold font.ttf");
+}
+@font-face {
+	font-family: 'Futura PT book';
+	src: url("../fonts/Futura Book font.ttf");
+}
+
 html {
     font-size: 62.5%;
 }
 
 body {
     background: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Futura PT light';
     font-size: $m-size;
 }
 

@@ -1,7 +1,7 @@
 .homePage_header {
 	text-align: center;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	flex-direction: column;
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
@@ -12,9 +12,6 @@
 	);
 }
 
-.nature_svg {
-	padding: $s-size;
-}
 .homePage__title {
 	padding: $s-size $s-size 0 $s-size;
 	color: white;
@@ -29,30 +26,13 @@
 .card {
 	display: flex;
 	justify-content: space-evenly;
-	margin: $xl-size;
-}
-
-.homePage__leftTextBody {
-    color: white;
-	background-color: navy;
-	border-top-left-radius: 2rem;
-	border-bottom-left-radius: 2rem;
-	width: 25%;
-    padding: $m-size;
-}
-
-.homePage__leftTextBody h2 {
-    font-weight: 200;
-    letter-spacing: 1px;
-    text-align: center;
-    position: relative;
-    padding: 50% 0 50% 0;
+	margin: $s-size;
 }
 
 .homePage__textBody {
     border-top-right-radius: 2rem;
 	border-bottom-right-radius: 2rem;
-	width: 75%;
+	width: 95%;
 	background-color: white;
 }
 .homePage__text {
