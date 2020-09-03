@@ -19,7 +19,6 @@
 @keyframes bounce {
 	0% {
 		opacity: 10%;
-		transform: translateY(0);
 		
 	}
 	100% {
@@ -72,10 +71,9 @@
 	margin: 0 $s-size 0 0;
 	z-index: 1;
 	padding: 0;
-	text-align: right;
 	right: 45%;
 	top: 90%;
-	animation: 2s ease-in-out 0s 5 bounce;
+	animation: 2s ease-in 0s 5 bounce;
 }
 
 #Black-section {
