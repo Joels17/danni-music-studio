@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+import mouseicon from '../images/mouse-icon.png';
 
-export const LoginPage = ({ startLogin }) => (
+export const LoginPage = () => (
 	<div className="LoginPage__head">
+
 		<div id="Banner">
 			<div id="buttons">
 				<Link to="/emailLogin">
-					<button className="button">Login with Email</button>
+					<button className="button">Student Login</button>
+					
 				</Link>
-
-				<button className="button" onClick={startLogin}>
-					Login with Google
-				</button>
 			</div>
 		</div>
+		
 		<div id="Black-section">
 			<h2>Danni's Music Studio</h2>
+			<img src={mouseicon} alt="scroll"></img>
 		</div>
 
 		<div className="row">
@@ -55,8 +55,5 @@ export const LoginPage = ({ startLogin }) => (
 	</div>
 );
 
-const mapDispatchToProps = (dispatch) => ({
-	startLogin: () => dispatch(startLogin()),
-});
 
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+export default connect(undefined)(LoginPage);

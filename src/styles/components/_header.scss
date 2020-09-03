@@ -1,3 +1,4 @@
+
 .header {
 	max-width: 100%;
 	display: flex;
@@ -11,6 +12,21 @@
 	);
 }
 
+#buttonDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#logout {
+	margin: $l-size;
+}
+
+#logimg {
+	margin-left: 5px;
+	max-width: 18px;
+}
+
 .header__link {
 	text-decoration: none;
 	padding: 2rem;
@@ -18,7 +34,6 @@
 }
 
 .header__link:hover {
-	
 	color: $third;
 }
 
@@ -26,10 +41,8 @@
 	color: $primary;
 }
 
-
-
-@media (min-width: $desktop-breakpoint){
-	.header{
-	  max-width: 100%;
+@media (min-width: $desktop-breakpoint) {
+	.header {
+		max-width: 100%;
 	}
-  }
+}

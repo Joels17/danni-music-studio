@@ -28,32 +28,39 @@ export class EmailLoginPage extends React.Component {
 			this.setState({ error: 'Please input email and password' });
 		} else {
 			this.setState({ error: '' });
-			this.props.startLoginEmail(this.state.email, this.state.password).catch((err) => {
-				this.setState({error: err.message})
-			});;
+			this.props
+				.startLoginEmail(this.state.email, this.state.password)
+				.catch((err) => {
+					this.setState({ error: err.message });
+				});
 		}
 	};
 
 	render() {
 		return (
-			<div>
-				{this.state.error ? <h3>{this.state.error}</h3>:''}
-				<form onSubmit={this.onSubmit}>
+			<div id="loginBanner">
+				<form id="loginForm" onSubmit={this.onSubmit}>
+				<h2>Login</h2>
+					{this.state.error ? <h3>{this.state.error}</h3> : ''}
 					<input
+						id="inputField"
 						type="text"
 						placeholder="Email"
 						onChange={this.onEmailChange}
 					/>
 
 					<input
+						id="inputField"
 						type="password"
 						placeholder="password"
 						onChange={this.onPasswordChange}
 					/>
 
-					<button>Login</button>
+					<button className="button">Login</button>
+					<Link to="/emailSignUp">
+						<button className="button">Create an Account</button>
+					</Link>
 				</form>
-				<Link to="/emailSignUp"><button>Create an Account</button></Link>
 			</div>
 		);
 	}

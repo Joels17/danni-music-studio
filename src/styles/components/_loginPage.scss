@@ -16,6 +16,19 @@
 	}
 }
 
+@keyframes bounce {
+	0% {
+		opacity: 10%;
+		transform: translateY(0);
+		
+	}
+	100% {
+		opacity: 100%;
+		transform: translateY(100px);
+		
+	}
+}
+
 .LoginPage__head {
 	background: black;
 	z-index: -5;
@@ -50,7 +63,19 @@
 	top: 55%;
 	transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
-	animation: 2s ease-in 0s 1 appear;
+	animation: 5s ease-in 0s 1 appear;
+}
+
+#Black-section img {
+	max-height: 50px;
+	position: absolute;
+	margin: 0 $s-size 0 0;
+	z-index: 1;
+	padding: 0;
+	text-align: right;
+	right: 45%;
+	top: 90%;
+	animation: 2s ease-in-out 0s 5 bounce;
 }
 
 #Black-section {
@@ -65,7 +90,7 @@
 #buttons {
 	display: flex;
 	flex-direction: column;
-	animation: 3.5s ease-in 0s 1 appear;
+	animation: 2.5s ease-in 0s 1 appear;
 }
 
 
@@ -98,13 +123,29 @@
 	padding: $xl-size $l-size  $xl-size $l-size ;
 }
 
+@media (max-width: 80rem) {
+
+	#Black-section h2 {
+		font-size: 70px;
+		max-width: 300px;
+	}
+}
+
+
 @media (max-width: $desktop-breakpoint) {
 	.row{
 		flex-direction: column;
 	}
-
+	.column {
+		padding: $s-size $l-size  $l-size $l-size ;
+		color: black;
+		float: left;
+	}
 	#Black-section h2 {
-		font-size: 30px;
+		margin-right: $xl-size;
+		font-size: 40px;
 		max-width: 100px;
 	}
 }
+
+

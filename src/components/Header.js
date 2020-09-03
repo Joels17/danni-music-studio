@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 import { currentStudent } from '../actions/currentStudent';
 import { removeAllStudents, startSetStudents } from '../actions/students';
+import logout from '../images/logout-64.png';
 
 export class Header extends React.Component {
 	onLogoutClick = () => {
@@ -61,8 +62,11 @@ export class Header extends React.Component {
 					''
 				)}
 
-				<button className="button" onClick={this.onLogoutClick}>
-					Logout
+				<button className="button" id="logout" onClick={this.onLogoutClick}>
+					<div id="buttonDiv">
+						Logout
+						<img id="logimg" src={logout} alt="Logout" />
+					</div>
 				</button>
 			</header>
 		);

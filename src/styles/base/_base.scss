@@ -1,65 +1,68 @@
 @font-face {
 	font-family: 'Futura PT light';
-	src: url("../fonts/futura light bt.ttf");
+	src: url('../fonts/futura light bt.ttf');
 }
 @font-face {
 	font-family: 'Futura PT medium';
-	src: url("../fonts/futura medium bt.ttf");
+	src: url('../fonts/futura medium bt.ttf');
 }
 @font-face {
 	font-family: 'Futura PT bold';
-	src: url("../fonts/Futura Bold font.ttf");
+	src: url('../fonts/Futura Bold font.ttf');
 }
 @font-face {
 	font-family: 'Futura PT book';
-	src: url("../fonts/Futura Book font.ttf");
+	src: url('../fonts/Futura Book font.ttf');
 }
 
 html {
-    font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-    background: white;
-    font-family: 'Futura PT light';
-    font-size: $m-size;
+	background: white;
+	font-family: 'Futura PT light';
+	font-size: $m-size;
 }
 
 .button {
-    cursor: pointer;
-    
+	margin: $s-size;
+	text-align: center;
+	width: 100px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #fff;
+	cursor: pointer;
+	height: 40px;
+	text-align: center;
+	border: none;
+	background-size: 300% 100%;
 
-    margin: $s-size;
-    text-align: center;
-    width: 100px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #fff;
-    cursor: pointer;
-    height: 40px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
-
-    border-radius: 50px;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
-    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+	border-radius: 50px;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	background-image: linear-gradient(
+		to right,
+		#29323c,
+		#485563,
+		#2b5876,
+		#4e4376
+	);
+	box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
 button:hover {
-    background-position: 100% 0;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+	background-position: 100% 0;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 button:disabled {
-    cursor: default;
+	cursor: default;
 }
 
 .button_text {
-    text-decoration: none;
+	text-decoration: none;
 }
