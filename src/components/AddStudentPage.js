@@ -53,24 +53,30 @@ export class AddStudentPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Input values for student</h2>
-				<form onSubmit={this.onSubmit}>
+				<form className="loginFormStudent" onSubmit={this.onSubmit}>
+					<h2>Enter New Student Information</h2>
 					<input
+						autoFocus
+						className="inputFieldStudent"
 						type="text"
 						placeholder="First Name"
 						onChange={this.firstNameOnChange}
 					/>
 					<input
+						className="inputFieldStudent"
 						type="text"
 						placeholder="Last Name"
 						onChange={this.lastNameOnChange}
 					/>
 					<input
+						className="inputFieldStudent"
 						type="text"
-						placeholder="Birthdate"
+						placeholder="Birthdate: MM/DD/YYYY"
 						onChange={this.birthDateOnChange}
 					/>
-					<button>Add Student</button>
+					<button className="button" id="buttonStudent">
+						Add Student
+					</button>
 				</form>
 			</div>
 		);

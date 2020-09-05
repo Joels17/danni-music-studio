@@ -2,7 +2,7 @@
 .header {
 	max-width: 100%;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	background: rgb(2, 0, 36);
 	background: linear-gradient(
 		90deg,
@@ -19,7 +19,7 @@
 }
 
 #logout {
-	margin: $l-size;
+	margin: $l-size $m-size $l-size $m-size;
 }
 
 #logimg {
@@ -41,7 +41,7 @@
 	color: $primary;
 }
 
-@media (min-width: $desktop-breakpoint) {
+@media (max-width: $desktop-breakpoint) {
 	.header {
 		max-width: 100%;
 	}

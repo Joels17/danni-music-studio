@@ -1,0 +1,32 @@
+.inputFieldStudent {
+    min-height: 40px;
+    min-width: 300px;
+    color: black;
+    background: transparent;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color: lightblue;
+    margin-bottom: $m-size;
+}
+
+
+.loginFormStudent {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+	right: 45%;
+	top: 30%;
+}
+
+#buttonStudent {
+    margin-left: 10rem;
+}
+
+@media (max-width: $desktop-breakpoint) {
+
+	.loginFormStudent {
+		top: 20%;
+        left: 10%;
+       
+	}
+}

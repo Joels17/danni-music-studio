@@ -39,18 +39,22 @@ export class EmailLoginPage extends React.Component {
 	render() {
 		return (
 			<div id="loginBanner">
-				<form id="loginForm" onSubmit={this.onSubmit}>
-				<h2>Login</h2>
-					{this.state.error ? <h3>{this.state.error}</h3> : ''}
+				<form className="loginForm" onSubmit={this.onSubmit}>
+					<h2>Login</h2>
+					<div id="error">
+						{this.state.error ? <h3>{this.state.error}</h3> : ''}
+					</div>
+
 					<input
-						id="inputField"
+						autoFocus
+						className="inputField"
 						type="text"
 						placeholder="Email"
 						onChange={this.onEmailChange}
 					/>
 
 					<input
-						id="inputField"
+						className="inputField"
 						type="password"
 						placeholder="password"
 						onChange={this.onPasswordChange}

@@ -57,8 +57,8 @@ export class StudentPage extends React.Component {
 			data.push(
 				<div key={student.id}>
 					<Link onClick={this.onClick} to={`/student/${student.id}`}>
-						{student.firstName}
-					</Link><br />
+						<div id="studentText">{student.firstName}</div>
+					</Link><br /> 
 				</div>
 			);
 		});
@@ -66,8 +66,12 @@ export class StudentPage extends React.Component {
 	};
 	render() {
 		return (
-			<div>
-				{this.getData()}
+			<div id="studentsWrapper">
+			<h2>Student List</h2>
+			<h4>Click on a student to view their notes</h4>
+				<div id="student">
+					{this.getData()}
+				</div>
 				<button className="button" onClick={this.onAddStudentClick}>
 					Add another student
 				</button>

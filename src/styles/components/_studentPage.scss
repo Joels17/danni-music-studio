@@ -1,0 +1,15 @@
+#studentsWrapper {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	top: 20%;
+	left: 45%;
+}
+
+#studentText {
+	text-align: center;
+	font-size: 2.5rem;
+	text-decoration: none;
+}
