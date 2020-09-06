@@ -36,13 +36,6 @@ export class Header extends React.Component {
 					<h4>Danni's Music Studio</h4>
 				</NavLink>
 				<NavLink
-					to="/about"
-					activeClassName="header__is-active"
-					className="header__link"
-				>
-					<h4>About</h4>
-				</NavLink>
-				<NavLink
 					to={this.studentAccountLink()}
 					activeClassName="header__is-active"
 					className="header__link"
@@ -51,13 +44,14 @@ export class Header extends React.Component {
 				</NavLink>
 
 				{this.props.isAdmin ? (
-					<NavLink
-						to="/admin"
-						activeClassName="header__is-active"
-						className="header__link"
-					>
-						<h4>Admin</h4>
-					</NavLink>
+					// <NavLink
+					// 	to="/admin"
+					// 	activeClassName="header__is-active"
+					// 	className="header__link"
+					// >
+					// 	<h4>Admin</h4>
+					// </NavLink>
+					''
 				) : (
 					''
 				)}

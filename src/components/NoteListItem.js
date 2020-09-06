@@ -10,10 +10,10 @@ export class NoteListItem extends React.Component {
 			<div className="noteListItem">
 				{this.props.isAdmin? (
 				<Link to={`/edit/${this.props.id}`}>
-					<h3>{this.props.noteTitle}</h3>
+					<h3 className="noteListItemH3">{this.props.noteTitle}</h3>
 				</Link>
 				) : (
-					<h3>{this.props.noteTitle}</h3>
+					<h3 className="noteListItemH3">{this.props.noteTitle}</h3>
 				)}
 				
 				<div suppressContentEditableWarning={true}>

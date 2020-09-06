@@ -7,6 +7,8 @@ import studentsReducer from '../reducers/studentsReducer';
 import currentStudentReducer from '../reducers/currentStudentReducer';
 import currentUserReducer from '../reducers/currentUserReducer';
 import usersReducer from '../reducers/usersReducer';
+import filesReducer from '../reducers/filesReducer';
+import usersFiltersReducer from '../reducers/usersFiltersReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,7 +21,9 @@ export default () => {
 			students: studentsReducer,
 			currentStudent: currentStudentReducer,
 			users: usersReducer,
-			currentUser: currentUserReducer
+			currentUser: currentUserReducer,
+			files: filesReducer,
+			userFilter: usersFiltersReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);

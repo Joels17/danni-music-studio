@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { startGetUsersAdmin } from '../actions/users';
 import { currentUser } from '../actions/currentUser';
+import searchUsers from '../selectors/searchUsers';
+import UserFilter from './UserFilter';
 
 export class UsersPage extends React.Component {
 	_isMounted = false;
@@ -50,16 +52,15 @@ export class UsersPage extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.state.render ? (
-					<div id="studentsWrapper">
-						<h2 id="studentPageH2">Users</h2>
-						<div>	
-						{this.getUsers()}
-						</div>
-					</div>
-				) : (
-					<div>Loading...</div>
-				)}
+				<div id="studentsWrapper">
+					<h2 id="studentPageH2">Student/Parent Emails</h2>
+					<UserFilter />
+					{this.state.render ? (
+						<div>{this.getUsers()}</div>
+					) : (
+						<div>Loading...</div>
+					)}
+				</div>
 			</div>
 		);
 	}
@@ -67,14 +68,14 @@ export class UsersPage extends React.Component {
 
 const maptDispatchToProps = (dispatch) => {
 	return {
-        startGetUsersAdmin: () => dispatch(startGetUsersAdmin()),
-        currentUser: (user) => dispatch(currentUser(user))
+		startGetUsersAdmin: () => dispatch(startGetUsersAdmin()),
+		currentUser: (user) => dispatch(currentUser(user)),
 	};
 };
 
 const mapStateToProps = (state) => {
 	return {
-		users: state.users,
+		users: searchUsers(state.users, state.userFilter)
 	};
 };
 

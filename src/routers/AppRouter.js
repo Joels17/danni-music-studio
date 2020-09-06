@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import HomePage from '../components/HomePage';
-import AboutPage from '../components/AboutPage';
 import NotFoundPage from '../components/NotFoundPage';
 import AdminPage from '../components/AdminPage';
 import AddNotePage from '../components/AddNotePage';
@@ -37,7 +36,6 @@ const AppRouter = () => (
 				<PrivateRoute path="/addStudent" component={AddStudentPage} />
 				<AdminRoute path="/studentsAdmin/:id" component={AdminStudents} />
 				<AdminRoute path="/usersAdmin" component={UsersPage} />
-				<PrivateRoute path="/about" component={AboutPage} />
 				<AdminRoute path="/admin" component={AdminPage} />
 				<AdminRoute path="/addNote/:id" component={AddNotePage} />
 				<AdminRoute path="/edit/:id" component={EditNotePage} />

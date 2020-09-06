@@ -7,6 +7,8 @@ import { currentStudent } from '../actions/currentStudent';
 import { startSetNotes } from '../actions/notes';
 import { history } from '../routers/AppRouter';
 import { startRemoveStudent } from '../actions/students';
+import { storage } from '../firebase/firebase';
+import { startAddFile, startSetFiles, setFiles } from '../actions/files';
 
 export class StudentProfilePage extends React.Component {
 	_isMounted = false;
@@ -15,21 +17,29 @@ export class StudentProfilePage extends React.Component {
 		this.state = {
 			hasFetched: false,
 			shouldRemove: false,
+			file: {
+				fileURL: '',
+				fileName: '',
+			},
+			hideUploads: true,
 		};
 	}
 
 	componentDidMount = () => {
+		this.props.setFiles([]);
 		this._isMounted = true;
 
 		this.props.currentStudent(this.props.student);
 
 		this.props.startSetNotes().then(() => {
-			if (this._isMounted) {
-				this.setState({ hasFetched: true });
-				if (!this.props.currentStudentState) {
-					history.push('/home');
+			this.props.startSetFiles().then(() => {
+				if (this._isMounted) {
+					this.setState({ hasFetched: true });
+					if (!this.props.currentStudentState) {
+						history.push('/home');
+					}
 				}
-			}
+			});
 		});
 	};
 
@@ -44,6 +54,32 @@ export class StudentProfilePage extends React.Component {
 	onRemoveStudentForGood = () => {
 		this.props.startRemoveStudent();
 		history.push('/loading');
+	};
+
+	onFileChange = async (e) => {
+		const file = e.target.files[0];
+		const storageRef = storage.ref();
+		const fileRef = storageRef.child(file.name);
+		await fileRef.put(file);
+		const fileURL = await fileRef.getDownloadURL();
+		this.setState(() => ({
+			file: {
+				fileURL: fileURL,
+				fileName: file.name,
+			},
+		}));
+	};
+
+	onFileSubmit = (e) => {
+		e.preventDefault();
+
+		this.props.startAddFile(this.state.file).then(() => {
+			console.log('Uploaded');
+		});
+	};
+
+	toggleUploads = () => {
+		this.setState({ hideUploads: !this.state.hideUploads });
 	};
 
 	render() {
@@ -86,9 +122,47 @@ export class StudentProfilePage extends React.Component {
 							)}
 						</div>
 					) : (
-						''
+						<div>
+							<form id="fileSubmit" onSubmit={this.onFileSubmit}>
+								<input
+									id="fileInput"
+									type="file"
+									onChange={this.onFileChange}
+								/>
+								<button className="button">Submit</button>
+							</form>
+						</div>
+					)}
+					{this.state.hideUploads ? (
+						<div className="hideUploads">
+							<button className="button" onClick={this.toggleUploads}>
+								View Uploads
+							</button>
+						</div>
+					) : (
+						<div className="hideUploads">
+							<button className="button" onClick={this.toggleUploads}>
+								Hide Uploads
+							</button>
+							<ul id="filesUploaded">
+								{this.props.files.map((file) => {
+									return (
+										<li key={file.id} className="filesUplaodedLI">
+											<a
+												href={file.fileURL}
+												download={file.fileName}
+												target="_blank"
+											>
+												{file.fileName}
+											</a>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
 					)}
 				</div>
+
 				<div id="noteInfo">
 					<h3>
 						<u>Note Search</u>
@@ -119,6 +193,7 @@ const mapStateToProps = (state, props) => {
 		),
 		currentStudentState: state.currentStudent,
 		isAdmin: !!state.auth.isAdmin,
+		files: state.files,
 	};
 };
 
@@ -127,6 +202,9 @@ const mapDispatchToProps = (dispatch) => {
 		currentStudent: (student) => dispatch(currentStudent(student)),
 		startSetNotes: () => dispatch(startSetNotes()),
 		startRemoveStudent: () => dispatch(startRemoveStudent()),
+		startAddFile: (fileData) => dispatch(startAddFile(fileData)),
+		startSetFiles: () => dispatch(startSetFiles()),
+		setFiles: (files) => dispatch(setFiles(files)),
 	};
 };
 

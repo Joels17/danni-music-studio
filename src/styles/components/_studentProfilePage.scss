@@ -37,12 +37,45 @@
 	display: flex;
 	flex-direction: column;
 }
-
+ 
 .noteListItem {
 	border: none;
 	border-bottom-style: solid;
 	border-bottom-color: lightblue;
 	margin: $xl-size $xl-size $xl-size 0;
+}
+
+.noteListItemH3 {
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: gray;
+}
+
+#fileSubmit {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	max-width: 150px;
+}
+
+#fileInput {
+	display: flex;
+	flex-direction: column;
+}
+
+#filesUploaded {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.filesUplaodedLI {
+	text-align: left;
+	margin: $s-size;
+}
+
+.hideUploads {
+	text-align: center;
 }
 
 #removeNoteButton {
