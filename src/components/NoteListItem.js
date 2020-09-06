@@ -7,7 +7,7 @@ import ReactHtmlParser from 'react-html-parser';
 export class NoteListItem extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className="noteListItem">
 				{this.props.isAdmin? (
 				<Link to={`/edit/${this.props.id}`}>
 					<h3>{this.props.noteTitle}</h3>

@@ -5,8 +5,8 @@ import NotesListFilter from './NotesListFilters';
 import NotesList from './NotesList';
 import { currentStudent } from '../actions/currentStudent';
 import { startSetNotes } from '../actions/notes';
-import { startRemoveStudent } from '../actions/students';
 import { history } from '../routers/AppRouter';
+import { startRemoveStudent } from '../actions/students';
 
 export class StudentProfilePage extends React.Component {
 	_isMounted = false;
@@ -14,6 +14,7 @@ export class StudentProfilePage extends React.Component {
 		super(props);
 		this.state = {
 			hasFetched: false,
+			shouldRemove: false,
 		};
 	}
 
@@ -28,7 +29,6 @@ export class StudentProfilePage extends React.Component {
 				if (!this.props.currentStudentState) {
 					history.push('/home');
 				}
-				
 			}
 		});
 	};
@@ -38,38 +38,75 @@ export class StudentProfilePage extends React.Component {
 	};
 
 	onRemoveStudent = () => {
+		this.setState({ shouldRemove: !this.state.shouldRemove });
+	};
+
+	onRemoveStudentForGood = () => {
 		this.props.startRemoveStudent();
-		history.push('/home');
+		history.push('/loading');
 	};
 
 	render() {
 		return (
-			<div>
-				{this.props.currentStudentState.firstName}{' '}
-				{this.props.currentStudentState.lastName}
-				<button className="button" onClick={this.onRemoveStudent}>
-					Remove student
-				</button>
-				{this.props.isAdmin ? (
-					<div>
-						<Link
-							to={`/addNote/${this.props.currentStudentState.id}`}
-							className="button_text"
-						>
-							<button className="button">Add Note</button>
-						</Link>
+			<div id="studentProfileWrapper">
+				<div id="studentInfo">
+					<div id="studentProfileName">
+						{this.props.currentStudentState.firstName}{' '}
+						{this.props.currentStudentState.lastName}
 					</div>
-				) : (
-					''
-				)}
-				<NotesListFilter />
-				{this.state.hasFetched ? (
-					<NotesList />
-				) : (
 					<div>
-						<p>Fetching notes...</p>
+						<h5 id="profileTips">
+							To download an image right click and save image
+						</h5>
 					</div>
-				)}
+
+					{this.props.isAdmin ? (
+						<div id="studentProfileButtons">
+							<Link
+								to={`/addNote/${this.props.currentStudentState.id}`}
+								className="button_text"
+							>
+								<button className="button">Add Note</button>
+							</Link>
+							<button className="button" onClick={this.onRemoveStudent}>
+								Remove student
+							</button>
+							{this.state.shouldRemove ? (
+								<div>
+									<h3>This will delete the student, and all of their notes</h3>
+									<button
+										className="button"
+										onClick={this.onRemoveStudentForGood}
+									>
+										DELETE STUDENT
+									</button>
+								</div>
+							) : (
+								''
+							)}
+						</div>
+					) : (
+						''
+					)}
+				</div>
+				<div id="noteInfo">
+					<h3>
+						<u>Note Search</u>
+					</h3>
+					<NotesListFilter />
+					<h3 id="noteInfoH3">
+						<u>Lesson Notes</u>
+					</h3>
+					{this.state.hasFetched ? (
+						<div>
+							<NotesList />
+						</div>
+					) : (
+						<div>
+							<p>Fetching notes...</p>
+						</div>
+					)}
+				</div>
 			</div>
 		);
 	}

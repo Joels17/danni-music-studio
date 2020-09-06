@@ -42,7 +42,8 @@
 }
 
 @media (max-width: $desktop-breakpoint) {
-	.header {
-		max-width: 100%;
+	.header__link {
+		text-align: center;
 	}
+
 }

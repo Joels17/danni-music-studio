@@ -32,7 +32,7 @@ export class AdminStudents extends React.Component {
 		let students = [];
 		for (let i = 0; i < this.props.students.length; i++) {
 			students.push(
-				<div key={this.props.students[i].id}>
+				<div id="studentText" key={this.props.students[i].id}>
 					<Link
 						onClick={this.onClick}
 						to={`/student/${this.props.students[i].id}`}
@@ -48,8 +48,8 @@ export class AdminStudents extends React.Component {
 	};
 	render() {
 		return (
-			<div>
-				<h3>Students</h3>
+			<div id="studentsWrapper">
+				<h2 id="studentPageH2">Students</h2>
 				{this.state.renderList ? (
 					<div>{this.getStudents()}</div>
 				) : (

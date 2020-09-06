@@ -24,6 +24,8 @@ export class NotesListFilters extends React.Component {
 		return (
 			<div>
 				<input
+					className="inputFieldStudent"
+					placeholder="Search notes by title"
 					type="text"
 					value={this.props.filters.text}
 					onChange={this.onTextChange}
@@ -36,9 +38,9 @@ export class NotesListFilters extends React.Component {
 					onFocusChange={this.onFocusChange}
 					numberOfMonths={1}
 					isOutsideRange={() => false}
-                    showClearDates={true}
-                    startDateId="start_date"
-                    endDateId="end_date"
+					showClearDates={true}
+					startDateId="start_date"
+					endDateId="end_date"
 				/>
 			</div>
 		);

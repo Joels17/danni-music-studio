@@ -40,25 +40,34 @@ export default class NoteForm extends React.Component {
 		}
 	};
 
+	onImageUpload = (targetImgElement, index, state, imageInfo, remainingFilesCount) => {
+		// const img = new Image();
+		// img.src = targetImgElement;
+		// img.onload = () => {
+		// 	alert(this.width + 'x' +this.height);
+		// }
+		console.log(targetImgElement, index, state, imageInfo, remainingFilesCount)
+	}
+
 	render() {
 		return (
-			<div suppressContentEditableWarning={true}>
+			<div suppressContentEditableWarning={true} id="noteFormWrapper">
 				{this.state.error && <h4>{this.state.error}</h4>}
 				<form onSubmit={this.onSubmit}>
 					<input
+						className="inputFieldStudent"
 						type="text"
 						placeholder="Note Title"
 						autoFocus
 						value={this.state.noteTitle}
 						onChange={this.onNoteTitleChange}
 					/>
-					<SunEditor setContents={this.state.noteBody} onChange={this.onNoteBodyChange} setOptions={{
-						buttonList : buttonList.complex,
-						height : 500,
-						width: 800
-					
+					<div id="sunEditor" >
+					<SunEditor setContents={this.state.noteBody} height={250} onImageUpload={this.onImageUpload} onChange={this.onNoteBodyChange} setOptions={{
+						buttonList : buttonList.complex,					
 					}}/>
-					<button>{this.props.note ? 'Update Note' : 'Add Note'}</button>
+					</div>
+					<button className="button">{this.props.note ? 'Update Note' : 'Add Note'}</button>
 				</form>
 			</div>
 		);

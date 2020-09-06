@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { startLoginEmail } from '../actions/auth';
+import { history } from '../routers/AppRouter';
 
 export class EmailLoginPage extends React.Component {
 	constructor(props) {
@@ -29,7 +30,9 @@ export class EmailLoginPage extends React.Component {
 		} else {
 			this.setState({ error: '' });
 			this.props
-				.startLoginEmail(this.state.email, this.state.password)
+				.startLoginEmail(this.state.email, this.state.password).then(() => {
+					history.push('/loading');
+				})
 				.catch((err) => {
 					this.setState({ error: err.message });
 				});

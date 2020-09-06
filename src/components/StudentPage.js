@@ -67,9 +67,9 @@ export class StudentPage extends React.Component {
 	render() {
 		return (
 			<div id="studentsWrapper">
-			<h2>Student List</h2>
+			<h2 id="studentPageH2">Student List</h2>
 			<h4>Click on a student to view their notes</h4>
-				<div id="student">
+				<div>
 					{this.getData()}
 				</div>
 				<button className="button" onClick={this.onAddStudentClick}>

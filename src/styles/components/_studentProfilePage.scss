@@ -1,0 +1,56 @@
+#studentProfileWrapper {
+	display: flex;
+	justify-content: left;
+}
+
+#studentInfo {
+	max-width: 10rem;
+	margin: $xl-size $l-size 0 $xl-size;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#profileTips {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: lightblue;
+}
+
+#noteInfo {
+	margin: $l-size $l-size 0 $xl-size;
+	display: flex;
+	flex-direction: column;
+	align-content: left;
+}
+
+#noteInfoH3 {
+	margin-top: 10rem;
+}
+
+#studentProfileName {
+	font-size: 3.5rem;
+	font-weight: bold;
+}
+
+#studentProfileButtons {
+	display: flex;
+	flex-direction: column;
+}
+
+.noteListItem {
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-color: lightblue;
+	margin: $xl-size $xl-size $xl-size 0;
+}
+
+#removeNoteButton {
+    text-align: center;
+}
+
+@media (max-width: $desktop-breakpoint) {
+	#studentProfileWrapper {
+        flex-direction: column;
+	}
+}

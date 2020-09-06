@@ -5,6 +5,10 @@ import { history } from '../routers/AppRouter';
 
 export class LoadingPage extends React.Component {
     componentDidMount = () => {
+        if(this.props.isAdmin){
+            history.push('/home');
+        }
+        
         if(this.props.students.length === 0){
             history.push('/home');
         }
@@ -29,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 const mapStateToProps = (state) => {
     return {
-        students: state.students
+        students: state.students,
+        isAdmin: state.isAdmin
     }
 };
 

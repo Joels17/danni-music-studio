@@ -62,7 +62,7 @@ export const removeStudent = (sid) => ({
 
 export const startRemoveStudent = () => {
 	return (dispatch, getState) => {
-		const uid = getState().auth.uid;
+		const uid = getState().currentUser.id;
 		const sid = getState().currentStudent.id;
 		return database
 			.ref(`users/${uid}/students/${sid}`)

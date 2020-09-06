@@ -18,7 +18,9 @@ export class EditNotePage extends React.Component {
     return (
       <div>
         <NoteForm note={this.props.note} onSubmit={this.onSubmit} />
-        <button onClick={this.onClick}>Remove</button>
+        <div id="removeNoteButton">
+        <button className="button" onClick={this.onClick}>Remove</button>
+        </div>
       </div>
     );
   }

@@ -1,15 +1,25 @@
 #studentsWrapper {
-	position: absolute;
+	text-align: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	top: 20%;
-	left: 45%;
+	margin-top: 5rem;
 }
 
 #studentText {
-	text-align: center;
-	font-size: 2.5rem;
+	text-align: left;
+	font-size: 2.2rem;
 	text-decoration: none;
+}
+
+#studentPageH2 {
+    margin-top: 0;
+}
+
+@media (max-width: $desktop-breakpoint) {
+    #studentsWrapper {
+        left: 20%;
+    } 
 }

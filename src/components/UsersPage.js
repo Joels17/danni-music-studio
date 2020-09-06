@@ -33,7 +33,7 @@ export class UsersPage extends React.Component {
 		let users = [];
 		for (let i = 0; i < this.props.users.length; i++) {
 			users.push(
-				<div key={this.props.users[i].id}>
+				<div id="studentText" key={this.props.users[i].id}>
 					<Link
 						onClick={() => this.props.currentUser(this.props.users[i])}
 						to={`/studentsAdmin/${this.props.users[i].id}`}
@@ -51,9 +51,11 @@ export class UsersPage extends React.Component {
 		return (
 			<div>
 				{this.state.render ? (
-					<div>
-						Users:
+					<div id="studentsWrapper">
+						<h2 id="studentPageH2">Users</h2>
+						<div>	
 						{this.getUsers()}
+						</div>
 					</div>
 				) : (
 					<div>Loading...</div>
