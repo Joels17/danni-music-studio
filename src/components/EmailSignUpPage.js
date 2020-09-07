@@ -10,6 +10,8 @@ export class EmailSignUpPage extends React.Component {
 			email: '',
 			password: '',
 			error: '',
+			repassword: '',
+			passcode: '',
 		};
 	}
 
@@ -21,10 +23,22 @@ export class EmailSignUpPage extends React.Component {
 		this.setState({ password: e.target.value });
 	};
 
+	onRePasswordChange = (e) => {
+		this.setState({ repassword: e.target.value });
+	};
+
+	onPasscodeChange = (e) => {
+		this.setState({ passcode: e.target.value });
+	};
+
 	onSubmit = (e) => {
 		e.preventDefault();
 		if (!this.state.email || !this.state.password) {
 			this.setState({ error: 'Please input email and password' });
+		} else if (this.state.password !== this.state.repassword) {
+			this.setState({ error: 'Passwords do not match' });
+		} else if (this.state.passcode !== 'accelerando') {
+			this.setState({ error: 'Incorrect passcode' });
 		} else {
 			this.setState({ error: '' });
 			this.props
@@ -38,21 +52,36 @@ export class EmailSignUpPage extends React.Component {
 	render() {
 		return (
 			<div id="loginBanner">
-				<form id="loginForm" onSubmit={this.onSubmit}>
+				<form className="loginForm" onSubmit={this.onSubmit}>
 					<h2>Create an Account</h2>
 					{this.state.error ? <h3>{this.state.error}</h3> : ''}
 					<input
-						id="inputField"
+						autoFocus
+						className="inputField"
 						type="text"
-						placeholder="Email"
+						placeholder="email"
 						onChange={this.onEmailChange}
 					/>
 
 					<input
-						id="inputField"
+						className="inputField"
 						type="password"
 						placeholder="password"
 						onChange={this.onPasswordChange}
+					/>
+
+					<input
+						className="inputField"
+						type="password"
+						placeholder="retype password"
+						onChange={this.onRePasswordChange}
+					/>
+
+					<input
+						className="inputField"
+						type="text"
+						placeholder="passcode"
+						onChange={this.onPasscodeChange}
 					/>
 
 					<button className="button">Create Account</button>

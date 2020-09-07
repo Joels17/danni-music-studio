@@ -8,10 +8,8 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
-import { startSetNotes } from './actions/notes';
 import { history } from './routers/AppRouter';
-import { login, logout, startSetAdmin, startDefaultLogin } from './actions/auth';
-import { startSetStudents } from './actions/students';
+import { login, logout, startSetAdmin } from './actions/auth';
 import { startSetUserInfo } from './actions/userInfo';
 
 const store = configureStore();

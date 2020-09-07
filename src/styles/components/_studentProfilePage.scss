@@ -4,11 +4,11 @@
 }
 
 #studentInfo {
-	max-width: 10rem;
+	max-width: 15rem;
 	margin: $xl-size $l-size 0 $xl-size;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: baseline;
 }
 
 #profileTips {
@@ -37,7 +37,7 @@
 	display: flex;
 	flex-direction: column;
 }
- 
+
 .noteListItem {
 	border: none;
 	border-bottom-style: solid;
@@ -52,16 +52,9 @@
 	background-color: gray;
 }
 
-#fileSubmit {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	max-width: 150px;
-}
-
 #fileInput {
-	display: flex;
-	flex-direction: column;
+	max-width: 200px;
+	cursor: pointer;
 }
 
 #filesUploaded {
@@ -79,11 +72,11 @@
 }
 
 #removeNoteButton {
-    text-align: center;
+	text-align: center;
 }
 
 @media (max-width: $desktop-breakpoint) {
 	#studentProfileWrapper {
-        flex-direction: column;
+		flex-direction: column;
 	}
 }

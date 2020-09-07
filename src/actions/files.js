@@ -1,4 +1,4 @@
-import database, { storage } from '../firebase/firebase';
+import database from '../firebase/firebase';
 
 export const addFile = (file) => ({
 	type: 'ADD_FILE',

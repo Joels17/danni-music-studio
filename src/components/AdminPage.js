@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import NotesListFilter from './NotesListFilters';
-import NotesList from './NotesList';
 import { functions } from '../firebase/firebase';
 
 export default class AdminPage extends React.Component {

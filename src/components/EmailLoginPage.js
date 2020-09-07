@@ -23,14 +23,17 @@ export class EmailLoginPage extends React.Component {
 		this.setState({ password: e.target.value });
 	};
 
+
+
 	onSubmit = (e) => {
 		e.preventDefault();
 		if (!this.state.email || !this.state.password) {
 			this.setState({ error: 'Please input email and password' });
-		} else {
+		}else {
 			this.setState({ error: '' });
 			this.props
-				.startLoginEmail(this.state.email, this.state.password).then(() => {
+				.startLoginEmail(this.state.email, this.state.password)
+				.then(() => {
 					history.push('/loading');
 				})
 				.catch((err) => {
@@ -52,7 +55,7 @@ export class EmailLoginPage extends React.Component {
 						autoFocus
 						className="inputField"
 						type="text"
-						placeholder="Email"
+						placeholder="email"
 						onChange={this.onEmailChange}
 					/>
 
@@ -62,6 +65,8 @@ export class EmailLoginPage extends React.Component {
 						placeholder="password"
 						onChange={this.onPasswordChange}
 					/>
+
+			
 
 					<button className="button">Login</button>
 					<Link to="/emailSignUp">

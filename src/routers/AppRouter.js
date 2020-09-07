@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import HomePage from '../components/HomePage';
 import NotFoundPage from '../components/NotFoundPage';
@@ -16,7 +16,6 @@ import StudentPage from '../components/StudentPage';
 import StudentProfilePage from '../components/StudentProfilePage';
 import LoadingPage from '../components/LoadingPage';
 import LoadingRoute from './LoadingRoute';
-import RefreshRoute from './RefreshRoute';
 import AdminStudents from '../components/AdminStudents';
 import AddStudentPage from '../components/AddStudentPage';
 import UsersPage from '../components/UsersPage';

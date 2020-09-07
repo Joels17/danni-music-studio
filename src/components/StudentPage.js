@@ -61,8 +61,9 @@ export class StudentPage extends React.Component {
 					</Link><br /> 
 				</div>
 			);
+			return data;
 		});
-		return data;
+		
 	};
 	render() {
 		return (

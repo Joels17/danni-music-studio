@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { currentUser } from '../actions/currentUser';
 import { startSetStudentsAdmin, setStudents } from '../actions/students';
 
 export class AdminStudents extends React.Component {

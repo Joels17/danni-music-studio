@@ -122,7 +122,7 @@ export class StudentProfilePage extends React.Component {
 							)}
 						</div>
 					) : (
-						<div>
+						<div id="formDiv">
 							<form id="fileSubmit" onSubmit={this.onFileSubmit}>
 								<input
 									id="fileInput"
@@ -152,6 +152,7 @@ export class StudentProfilePage extends React.Component {
 												href={file.fileURL}
 												download={file.fileName}
 												target="_blank"
+												rel="noopener noreferrer"
 											>
 												{file.fileName}
 											</a>
