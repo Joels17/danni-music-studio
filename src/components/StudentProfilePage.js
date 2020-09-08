@@ -22,6 +22,7 @@ export class StudentProfilePage extends React.Component {
 				fileName: '',
 			},
 			hideUploads: true,
+			fileUploadSuccess: false,
 		};
 	}
 
@@ -75,6 +76,7 @@ export class StudentProfilePage extends React.Component {
 
 		this.props.startAddFile(this.state.file).then(() => {
 			this.setState({ hideUploads: false });
+			this.setState({ fileUploadSuccess: true });
 		});
 	};
 
@@ -102,10 +104,12 @@ export class StudentProfilePage extends React.Component {
 					<div id="studentInfo">
 						<div>
 							<h5 className="profileTips">
-								To download an image posted by Danni, right click or hold down and save image
+								To download an image posted by Danni, right click or hold down
+								and save image
 							</h5>
 							<h5 className="profileTips">
-								To upload a file for Danni, select choose file and then submit below
+								To upload a file for Danni, select choose file and then submit
+								below
 							</h5>
 						</div>
 
@@ -148,6 +152,11 @@ export class StudentProfilePage extends React.Component {
 								</form>
 							</div>
 						)}
+						{this.state.fileUploadSuccess ? (
+							<div>
+								File Successfully Uploaded!
+							</div>
+						) : ('')}
 						{this.state.hideUploads ? (
 							<div className="hideUploads">
 								<button className="button" onClick={this.toggleUploads}>
@@ -190,7 +199,7 @@ export class StudentProfilePage extends React.Component {
 							<u>Note Search</u>
 						</h3>
 						<div id="notesFilter">
-						<NotesListFilter />
+							<NotesListFilter />
 						</div>
 						<h3 id="noteInfoH3">
 							<u>Lesson Notes</u>

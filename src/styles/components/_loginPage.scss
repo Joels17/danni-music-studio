@@ -50,11 +50,12 @@
 }
 
 #Black-section h2 {
+	max-width: 300px;
 	color: #fff;
 	font-size: 80px;
 	font-family: 'Futura PT book';
 	position: absolute;
-	margin: 0 $s-size 0 0;
+	margin: 0 $l-size 0 0;
 	z-index: 1;
 	padding: 0;
 	text-align: right;
@@ -145,12 +146,7 @@
 	padding: $l-size;
 }
 
-@media (max-width: 80rem) {
-	#Black-section h2 {
-		font-size: 70px;
-		max-width: 300px;
-	}
-}
+
 
 @media (max-width: $desktop-breakpoint) {
 	.row {
