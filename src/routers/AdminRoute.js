@@ -18,7 +18,7 @@ export const AdminRoute = ({
 						<Component {...props} />
 					</div>
 				) : (
-					<Redirect to="/home" />
+					<Redirect to="/students" />
 				)
 			}
 		/>

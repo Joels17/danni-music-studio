@@ -15,7 +15,7 @@ export class LoadingPage extends React.Component {
 			this.props.currentUser('');
 			this.props.getUsersAdmin([]);
 			this.props.startSetStudents().then(() => {
-				history.push('/home');
+				history.push('/students');
 			});
 		}
 	};

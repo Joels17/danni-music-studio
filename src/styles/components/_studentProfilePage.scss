@@ -1,6 +1,5 @@
-#studentProfileWrapper {
+#profileBody {
 	display: flex;
-	justify-content: left;
 }
 
 #studentInfo {
@@ -11,7 +10,7 @@
 	align-items: baseline;
 }
 
-#profileTips {
+.profileTips {
 	padding: 5px;
 	border-radius: 5px;
 	background-color: lightblue;
@@ -28,9 +27,28 @@
 	margin-top: 10rem;
 }
 
+
+#profileBanner {
+	color: white;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(4, 4, 58, 1) 100%,
+		rgba(0, 212, 255, 1) 100%
+	);
+	display: flex;
+	flex-direction: row;
+	max-width: 100%;
+	padding: $xl-size $l-size $l-size $l-size;
+}
+
 #studentProfileName {
 	font-size: 3.5rem;
 	font-weight: bold;
+	margin: 3rem 3rem 2rem 2rem;
+	max-width: 50%;
+
 }
 
 #studentProfileButtons {
@@ -59,24 +77,50 @@
 
 #filesUploaded {
 	display: flex;
+	justify-content: left;
 	flex-direction: column-reverse;
 }
 
 .filesUplaodedLI {
 	text-align: left;
-	margin: $s-size;
+	margin: $s-size $m-size 0 0;
 }
 
 .hideUploads {
-	text-align: center;
+	text-align: left;
 }
 
 #removeNoteButton {
 	text-align: center;
 }
 
+#profileWelcome {
+	margin-left: $m-size;
+	padding: 2rem $s-size 2rem $s-size;
+	text-align: center;
+	background-color: indianred;
+	border-radius: 5px;
+	color: white;
+	max-width: 200rem;
+}
+
 @media (max-width: $desktop-breakpoint) {
 	#studentProfileWrapper {
 		flex-direction: column;
+	}
+	#profileBanner {
+		
+		flex-direction: column;
+		padding: $l-size $l-size $l-size $l-size;
+	}
+	#profileBody{
+		flex-direction: column;
+	}
+	#studentInfo {
+		margin: 10px 10% 10px 10%;
+		max-width: 50rem;
+	}
+	#studentProfileButtons {
+		flex-direction: row;
 	}
 }

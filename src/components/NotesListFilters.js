@@ -25,7 +25,7 @@ export class NotesListFilters extends React.Component {
 			<div>
 				<input
 					className="inputFieldStudent"
-					placeholder="Search notes by title"
+					placeholder="Search note titles or select date range"
 					type="text"
 					value={this.props.filters.text}
 					onChange={this.onTextChange}

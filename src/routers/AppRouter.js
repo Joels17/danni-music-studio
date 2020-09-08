@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import HomePage from '../components/HomePage';
 import NotFoundPage from '../components/NotFoundPage';
 import AdminPage from '../components/AdminPage';
 import AddNotePage from '../components/AddNotePage';
@@ -29,7 +28,6 @@ const AppRouter = () => (
 				<PublicRoute path="/" component={LoginPage} exact={true} />
 				<PublicRoute path="/emailLogin" component={EmailLoginPage} />
 				<PublicRoute path="/emailSignUp" component={EmailSignUpPage} />
-				<PrivateRoute path="/home" component={HomePage} />
 				<LoadingRoute path="/loading" component={LoadingPage} />
 				<PrivateRoute path="/students" component={StudentPage} />
 				<PrivateRoute path="/addStudent" component={AddStudentPage} />

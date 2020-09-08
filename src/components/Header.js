@@ -28,14 +28,6 @@ export class Header extends React.Component {
 		return (
 			<header className="header">
 				<NavLink
-					to="/home"
-					activeClassName="header__is-active"
-					className="header__link"
-					exact={true}
-				>
-					<h4>Danni's Music Studio</h4>
-				</NavLink>
-				<NavLink
 					to={this.studentAccountLink()}
 					activeClassName="header__is-active"
 					className="header__link"

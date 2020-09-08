@@ -43,7 +43,10 @@
     margin-bottom: $m-size;
 }
 
-
+#loginH4 {
+	text-align: center;
+	min-width: 20rem;
+}
 
 
 @media (max-width: $desktop-breakpoint) {

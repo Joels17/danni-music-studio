@@ -74,7 +74,7 @@ export class StudentProfilePage extends React.Component {
 		e.preventDefault();
 
 		this.props.startAddFile(this.state.file).then(() => {
-			console.log('Uploaded');
+			this.setState({ hideUploads: false });
 		});
 	};
 
@@ -85,102 +85,126 @@ export class StudentProfilePage extends React.Component {
 	render() {
 		return (
 			<div id="studentProfileWrapper">
-				<div id="studentInfo">
+				<div id="profileBanner">
 					<div id="studentProfileName">
 						{this.props.currentStudentState.firstName}{' '}
 						{this.props.currentStudentState.lastName}
 					</div>
-					<div>
-						<h5 id="profileTips">
-							To download an image right click and save image
-						</h5>
+					<div id="profileWelcome">
+						<h3>
+							Welcome to your personal student page! This is where you can find
+							all lesson notes, homework, music, and information provided
+							specifically for you by Danni.
+						</h3>
+					</div>
+				</div>
+				<div id="profileBody">
+					<div id="studentInfo">
+						<div>
+							<h5 className="profileTips">
+								To download an image posted by Danni, right click or hold down and save image
+							</h5>
+							<h5 className="profileTips">
+								To upload a file for Danni, select choose file and then submit below
+							</h5>
+						</div>
+
+						{this.props.isAdmin ? (
+							<div id="studentProfileButtons">
+								<Link
+									to={`/addNote/${this.props.currentStudentState.id}`}
+									className="button_text"
+								>
+									<button className="button">Add Note</button>
+								</Link>
+								<button className="button" onClick={this.onRemoveStudent}>
+									Remove student
+								</button>
+								{this.state.shouldRemove ? (
+									<div>
+										<h3>
+											This will delete the student, and all of their notes
+										</h3>
+										<button
+											className="button"
+											onClick={this.onRemoveStudentForGood}
+										>
+											DELETE STUDENT
+										</button>
+									</div>
+								) : (
+									''
+								)}
+							</div>
+						) : (
+							<div id="formDiv">
+								<form id="fileSubmit" onSubmit={this.onFileSubmit}>
+									<input
+										id="fileInput"
+										type="file"
+										onChange={this.onFileChange}
+									/>
+									<button className="button">Submit</button>
+								</form>
+							</div>
+						)}
+						{this.state.hideUploads ? (
+							<div className="hideUploads">
+								<button className="button" onClick={this.toggleUploads}>
+									View Uploads
+								</button>
+							</div>
+						) : (
+							<div className="hideUploads">
+								<button className="button" onClick={this.toggleUploads}>
+									Hide Uploads
+								</button>
+								{this.props.files.length !== 0 ? (
+									<div>
+										<ul id="filesUploaded">
+											{this.props.files.map((file) => {
+												return (
+													<li key={file.id} className="filesUplaodedLI">
+														<a
+															href={file.fileURL}
+															download={file.fileName}
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															{file.fileName}
+														</a>
+													</li>
+												);
+											})}
+										</ul>
+									</div>
+								) : (
+									<div>No uploads</div>
+								)}
+							</div>
+						)}
 					</div>
 
-					{this.props.isAdmin ? (
-						<div id="studentProfileButtons">
-							<Link
-								to={`/addNote/${this.props.currentStudentState.id}`}
-								className="button_text"
-							>
-								<button className="button">Add Note</button>
-							</Link>
-							<button className="button" onClick={this.onRemoveStudent}>
-								Remove student
-							</button>
-							{this.state.shouldRemove ? (
-								<div>
-									<h3>This will delete the student, and all of their notes</h3>
-									<button
-										className="button"
-										onClick={this.onRemoveStudentForGood}
-									>
-										DELETE STUDENT
-									</button>
-								</div>
-							) : (
-								''
-							)}
+					<div id="noteInfo">
+						<h3>
+							<u>Note Search</u>
+						</h3>
+						<div id="notesFilter">
+						<NotesListFilter />
 						</div>
-					) : (
-						<div id="formDiv">
-							<form id="fileSubmit" onSubmit={this.onFileSubmit}>
-								<input
-									id="fileInput"
-									type="file"
-									onChange={this.onFileChange}
-								/>
-								<button className="button">Submit</button>
-							</form>
-						</div>
-					)}
-					{this.state.hideUploads ? (
-						<div className="hideUploads">
-							<button className="button" onClick={this.toggleUploads}>
-								View Uploads
-							</button>
-						</div>
-					) : (
-						<div className="hideUploads">
-							<button className="button" onClick={this.toggleUploads}>
-								Hide Uploads
-							</button>
-							<ul id="filesUploaded">
-								{this.props.files.map((file) => {
-									return (
-										<li key={file.id} className="filesUplaodedLI">
-											<a
-												href={file.fileURL}
-												download={file.fileName}
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												{file.fileName}
-											</a>
-										</li>
-									);
-								})}
-							</ul>
-						</div>
-					)}
-				</div>
-
-				<div id="noteInfo">
-					<h3>
-						<u>Note Search</u>
-					</h3>
-					<NotesListFilter />
-					<h3 id="noteInfoH3">
-						<u>Lesson Notes</u>
-					</h3>
-					{this.state.hasFetched ? (
-						<div>
-							<NotesList />
-						</div>
-					) : (
-						<div>
-							<p>Fetching notes...</p>
-						</div>
-					)}
+						<h3 id="noteInfoH3">
+							<u>Lesson Notes</u>
+						</h3>
+						{this.state.hasFetched ? (
+							<div>
+								<NotesList />
+							</div>
+						) : (
+							<div>
+								<p>Fetching notes...</p>
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
 		);

@@ -66,7 +66,7 @@ export class EmailLoginPage extends React.Component {
 						onChange={this.onPasswordChange}
 					/>
 
-			
+					<h4 id="loginH4">Forgot your password? Contact Danni for help!</h4>
 
 					<button className="button">Login</button>
 					<Link to="/emailSignUp">

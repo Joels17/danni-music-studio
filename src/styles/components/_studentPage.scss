@@ -9,17 +9,32 @@
 }
 
 #studentText {
-	text-align: left;
+	text-align: center;
 	font-size: 2.2rem;
 	text-decoration: none;
 }
 
+#studentPageH1 {
+	text-align: center;
+	color: white;
+	max-width: 100%;
+	padding: $l-size;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(4, 4, 58, 1) 100%,
+		rgba(0, 212, 255, 1) 100%
+	);
+	font-size: 25px;
+}
+
 #studentPageH2 {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 @media (max-width: $desktop-breakpoint) {
-    #studentsWrapper {
-        left: 20%;
-    } 
+	#studentsWrapper {
+		left: 20%;
+	}
 }

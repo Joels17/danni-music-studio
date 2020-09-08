@@ -58,24 +58,38 @@ export class StudentPage extends React.Component {
 				<div key={student.id}>
 					<Link onClick={this.onClick} to={`/student/${student.id}`}>
 						<div id="studentText">{student.firstName}</div>
-					</Link><br /> 
+					</Link>
+					<br />
 				</div>
 			);
 			return data;
 		});
-		
+		return data;
 	};
 	render() {
 		return (
-			<div id="studentsWrapper">
-			<h2 id="studentPageH2">Student List</h2>
-			<h4>Click on a student to view their notes</h4>
-				<div>
-					{this.getData()}
+			<div>
+				<div id="studentPageH1">
+					<h1>Welcome to Your Student Account</h1>
 				</div>
-				<button className="button" onClick={this.onAddStudentClick}>
-					Add another student
-				</button>
+
+				<div id="studentsWrapper">
+					<h2 id="studentPageH2">Student List</h2>
+					{this.props.students.length !== 0  ?  (
+						<div>
+						<h4>Click on a student to view their notes</h4>
+						<div>{this.getData()}</div>
+						</div>
+					) : (
+						<div>
+						<h4>To create a student account click on Add Student below</h4>
+						</div>
+					)}
+					
+					<button className="button" onClick={this.onAddStudentClick}>
+						Add Student
+					</button>
+				</div>
 			</div>
 		);
 	}
