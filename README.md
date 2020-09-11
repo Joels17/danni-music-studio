@@ -10,3 +10,4 @@
   <li><p>Teacher view of homework uploaded, and ability to upload marked homework to teacher notes</p></li>
   <li><p>Student view of their own uploaded homework</p></li>
 </ul>
+<p>No testing aside from manual, as time did not permit</p>
