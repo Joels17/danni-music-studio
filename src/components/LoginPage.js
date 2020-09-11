@@ -152,6 +152,8 @@ export const LoginPage = () => (
 			</p>
 			<p>421 Cawston Ave, Kelowna BC, V1Y6Z1</p>
 			<p>Email: dannifehr@yahoo.ca</p> <p>Phone: 250-570-2277</p>
+			<br></br>
+			<p>Website created by Joel Semeniuk: joel.semeniuk@gmail.com</p>
 		</div>
 	</div>
 );

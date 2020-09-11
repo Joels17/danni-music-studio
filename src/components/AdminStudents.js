@@ -50,7 +50,9 @@ export class AdminStudents extends React.Component {
 			<div id="studentsWrapper">
 				<h2 id="studentPageH2">Students</h2>
 				{this.state.renderList ? (
-					<div>{this.getStudents()}</div>
+					<div>
+						{this.props.students.length === 0 ? 'No students' : this.getStudents()}
+					</div>
 				) : (
 					<div>
 						<p>Loading...</p>

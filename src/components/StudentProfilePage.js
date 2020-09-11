@@ -90,7 +90,8 @@ export class StudentProfilePage extends React.Component {
 				<div id="profileBanner">
 					<div id="studentProfileName">
 						{this.props.currentStudentState.firstName}{' '}
-						{this.props.currentStudentState.lastName}
+						{this.props.currentStudentState.lastName}{' '}
+						<p>{this.props.currentStudentState.birthDate}</p>
 					</div>
 					<div id="profileWelcome">
 						<h3>
