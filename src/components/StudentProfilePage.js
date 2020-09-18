@@ -73,7 +73,7 @@ export class StudentProfilePage extends React.Component {
 				}).then(() => {
 					this.setState({ hideUploads: false });
 					this.setState({ fileUploadSuccess: true });
-					history.push(`/student/${this.props.currentStudentState.id}`);
+					history.push(`/uploadSuccess`);
 				});
 			});
 			

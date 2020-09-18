@@ -18,6 +18,7 @@ import LoadingRoute from './LoadingRoute';
 import AdminStudents from '../components/AdminStudents';
 import AddStudentPage from '../components/AddStudentPage';
 import UsersPage from '../components/UsersPage';
+import UploadSuccessPage from '../components/UploadSuccess';
 
 export const history = createHistory();
 
@@ -30,6 +31,7 @@ const AppRouter = () => (
 				<PublicRoute path="/emailSignUp" component={EmailSignUpPage} />
 				<LoadingRoute path="/loading" component={LoadingPage} />
 				<PrivateRoute path="/students" component={StudentPage} />
+				<PrivateRoute path="/uploadSuccess" component={UploadSuccessPage} />
 				<PrivateRoute path="/addStudent" component={AddStudentPage} />
 				<AdminRoute path="/studentsAdmin/:id" component={AdminStudents} />
 				<AdminRoute path="/usersAdmin" component={UsersPage} />
