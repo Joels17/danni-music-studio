@@ -17,10 +17,7 @@ export class StudentProfilePage extends React.Component {
 		this.state = {
 			hasFetched: false,
 			shouldRemove: false,
-			file: {
-				fileURL: '',
-				fileName: '',
-			},
+			fileID: '',
 			hideUploads: true,
 			fileUploadSuccess: false,
 		};
@@ -58,25 +55,30 @@ export class StudentProfilePage extends React.Component {
 	};
 
 	onFileChange = async (e) => {
-		const file = e.target.files[0];
-		const storageRef = storage.ref();
-		const fileRef = storageRef.child(file.name);
-		await fileRef.put(file);
-		const fileURL = await fileRef.getDownloadURL();
-		this.setState(() => ({
-			file: {
-				fileURL: fileURL,
-				fileName: file.name,
-			},
-		}));
+		this.setState({ fileID: e.target.files[0] });
 	};
 
 	onFileSubmit = (e) => {
 		e.preventDefault();
+		console.log(this.state.fileID);
 
-		this.props.startAddFile(this.state.file).then(() => {
-			this.setState({ hideUploads: false });
-			this.setState({ fileUploadSuccess: true });
+		const file = this.state.fileID;
+		const storageRef = storage.ref();
+		const fileRef = storageRef.child(file.name);
+		fileRef.put(file).then(() => {
+			fileRef.getDownloadURL().then((fileURL) => {
+				this.props.startAddFile({
+					fileURL: fileURL,
+					fileName: file.name
+				}).then(() => {
+					this.setState({ hideUploads: false });
+					this.setState({ fileUploadSuccess: true });
+					history.push(`/student/${this.props.currentStudentState.id}`);
+				});
+			});
+			
+
+		
 		});
 	};
 
@@ -154,10 +156,10 @@ export class StudentProfilePage extends React.Component {
 							</div>
 						)}
 						{this.state.fileUploadSuccess ? (
-							<div>
-								File Successfully Uploaded!
-							</div>
-						) : ('')}
+							<div>File Successfully Uploaded!</div>
+						) : (
+							''
+						)}
 						{this.state.hideUploads ? (
 							<div className="hideUploads">
 								<button className="button" onClick={this.toggleUploads}>
@@ -172,9 +174,9 @@ export class StudentProfilePage extends React.Component {
 								{this.props.files.length !== 0 ? (
 									<div>
 										<ul id="filesUploaded">
-											{this.props.files.map((file) => {
+											{this.props.files.map((file, index) => {
 												return (
-													<li key={file.id} className="filesUplaodedLI">
+													<li key={index} className="filesUplaodedLI">
 														<a
 															href={file.fileURL}
 															download={file.fileName}
