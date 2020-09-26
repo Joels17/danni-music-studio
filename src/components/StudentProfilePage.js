@@ -7,8 +7,6 @@ import { currentStudent } from '../actions/currentStudent';
 import { startSetNotes } from '../actions/notes';
 import { history } from '../routers/AppRouter';
 import { startRemoveStudent } from '../actions/students';
-import { storage } from '../firebase/firebase';
-import { startAddFile, startSetFiles, setFiles } from '../actions/files';
 
 export class StudentProfilePage extends React.Component {
 	_isMounted = false;
@@ -17,27 +15,21 @@ export class StudentProfilePage extends React.Component {
 		this.state = {
 			hasFetched: false,
 			shouldRemove: false,
-			fileID: '',
-			hideUploads: true,
-			fileUploadSuccess: false,
 		};
 	}
 
 	componentDidMount = () => {
-		this.props.setFiles([]);
 		this._isMounted = true;
 
 		this.props.currentStudent(this.props.student);
 
 		this.props.startSetNotes().then(() => {
-			this.props.startSetFiles().then(() => {
-				if (this._isMounted) {
-					this.setState({ hasFetched: true });
-					if (!this.props.currentStudentState) {
-						history.push('/home');
-					}
+			if (this._isMounted) {
+				this.setState({ hasFetched: true });
+				if (!this.props.currentStudentState) {
+					history.push('/home');
 				}
-			});
+			}
 		});
 	};
 
@@ -52,38 +44,6 @@ export class StudentProfilePage extends React.Component {
 	onRemoveStudentForGood = () => {
 		this.props.startRemoveStudent();
 		history.push('/loading');
-	};
-
-	onFileChange = async (e) => {
-		this.setState({ fileID: e.target.files[0] });
-	};
-
-	onFileSubmit = (e) => {
-		e.preventDefault();
-		console.log(this.state.fileID);
-
-		const file = this.state.fileID;
-		const storageRef = storage.ref();
-		const fileRef = storageRef.child(file.name);
-		fileRef.put(file).then(() => {
-			fileRef.getDownloadURL().then((fileURL) => {
-				this.props.startAddFile({
-					fileURL: fileURL,
-					fileName: file.name
-				}).then(() => {
-					this.setState({ hideUploads: false });
-					this.setState({ fileUploadSuccess: true });
-					history.push(`/uploadSuccess`);
-				});
-			});
-			
-
-		
-		});
-	};
-
-	toggleUploads = () => {
-		this.setState({ hideUploads: !this.state.hideUploads });
 	};
 
 	render() {
@@ -109,10 +69,6 @@ export class StudentProfilePage extends React.Component {
 							<h5 className="profileTips">
 								To download an image posted by Danni, right click or hold down
 								and save image
-							</h5>
-							<h5 className="profileTips">
-								To upload a file for Danni, select choose file and then submit
-								below
 							</h5>
 						</div>
 
@@ -144,56 +100,7 @@ export class StudentProfilePage extends React.Component {
 								)}
 							</div>
 						) : (
-							<div id="formDiv">
-								<form id="fileSubmit" onSubmit={this.onFileSubmit}>
-									<input
-										id="fileInput"
-										type="file"
-										onChange={this.onFileChange}
-									/>
-									<button className="button">Submit</button>
-								</form>
-							</div>
-						)}
-						{this.state.fileUploadSuccess ? (
-							<div>File Successfully Uploaded!</div>
-						) : (
 							''
-						)}
-						{this.state.hideUploads ? (
-							<div className="hideUploads">
-								<button className="button" onClick={this.toggleUploads}>
-									View Uploads
-								</button>
-							</div>
-						) : (
-							<div className="hideUploads">
-								<button className="button" onClick={this.toggleUploads}>
-									Hide Uploads
-								</button>
-								{this.props.files.length !== 0 ? (
-									<div>
-										<ul id="filesUploaded">
-											{this.props.files.map((file, index) => {
-												return (
-													<li key={index} className="filesUplaodedLI">
-														<a
-															href={file.fileURL}
-															download={file.fileName}
-															target="_blank"
-															rel="noopener noreferrer"
-														>
-															{file.fileName}
-														</a>
-													</li>
-												);
-											})}
-										</ul>
-									</div>
-								) : (
-									<div>No uploads</div>
-								)}
-							</div>
 						)}
 					</div>
 
@@ -230,7 +137,6 @@ const mapStateToProps = (state, props) => {
 		),
 		currentStudentState: state.currentStudent,
 		isAdmin: !!state.auth.isAdmin,
-		files: state.files,
 	};
 };
 
@@ -239,9 +145,6 @@ const mapDispatchToProps = (dispatch) => {
 		currentStudent: (student) => dispatch(currentStudent(student)),
 		startSetNotes: () => dispatch(startSetNotes()),
 		startRemoveStudent: () => dispatch(startRemoveStudent()),
-		startAddFile: (fileData) => dispatch(startAddFile(fileData)),
-		startSetFiles: () => dispatch(startSetFiles()),
-		setFiles: (files) => dispatch(setFiles(files)),
 	};
 };
 

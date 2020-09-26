@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startSetStudents } from '../actions/students';
 import { history } from '../routers/AppRouter';
-import { setFiles } from '../actions/files';
 import { currentUser } from '../actions/currentUser';
 import { getUsersAdmin } from '../actions/users';
 
@@ -11,7 +10,6 @@ export class LoadingPage extends React.Component {
 		if (this.props.isAdmin) {
 			history.push('/home');
 		} else {
-			this.props.setFiles([]);
 			this.props.currentUser('');
 			this.props.getUsersAdmin([]);
 			this.props.startSetStudents().then(() => {
@@ -32,7 +30,6 @@ export class LoadingPage extends React.Component {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		startSetStudents: () => dispatch(startSetStudents()),
-		setFiles: (files) => dispatch(setFiles(files)),
 		currentUser: (user) => dispatch(currentUser(user)),
 		getUsersAdmin: (users) => dispatch(getUsersAdmin(users)),
 	};

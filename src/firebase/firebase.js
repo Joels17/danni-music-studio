@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/functions';
-import 'firebase/storage';
 
 const config = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -19,6 +18,5 @@ firebase.initializeApp(config);
 const database = firebase.database();
 const emailAuthProvider = new firebase.auth.EmailAuthProvider();
 const functions = firebase.functions();
-const storage = firebase.storage();
 
-export { firebase, storage, emailAuthProvider, functions, database as default };
+export { firebase, emailAuthProvider, functions, database as default };
